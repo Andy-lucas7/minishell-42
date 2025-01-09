@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:46:53 by lserrao-          #+#    #+#             */
-/*   Updated: 2024/12/20 16:43:50 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/01/09 18:20:28 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 // pesquisar sobre parsing
 // pesquisar sobre tokenização
 
-int	main(void)
+static char	*prompt(char *argm, char **envar)
 {
 	char	*input;
 
 	while (1)
 	{
-		input = readline("\033[1;36mPROJETO_5 (Minishell) \033[0m");
+		input = readline("\033[0;36mMinishell: \033[0m");
+		execve("PATH", argm, **envar);
 		if (!input)
 		{
 			printf("exit\n");
@@ -36,6 +37,18 @@ int	main(void)
 			add_history(input);
 		free(input);
 	}
+	return (NULL);
+}
 
-	return (0);
+int	main(int argc, char **argv, char **envar)
+{
+	char	*input;
+
+	while (1)
+	{
+		input = prompt(argv[1], **envar);
+		if (input == NULL)
+			return (EXIT_SUCCESS);
+	}
+	return (EXIT_SUCCESS);
 }
