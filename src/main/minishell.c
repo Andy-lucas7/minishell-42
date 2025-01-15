@@ -6,16 +6,16 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:46:53 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/13 19:35:00 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:05:52 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 // pesquisar sobre parsing
 // pesquisar sobre tokenização
 
-static char	*join_path(const char *dir, const char *cmd)
+char	*join_path(const char *dir, const char *cmd)
 {
 	char	*path;
 	int		len;
@@ -28,24 +28,8 @@ static char	*join_path(const char *dir, const char *cmd)
 	return (path);
 }
 
-// Libera memória de uma lista de strings
-static void	free_paths(char **paths)
-{
-	int	i;
-
-	if (!paths)
-		return ;
-	i = 0;
-	while (paths[i])
-	{
-		free(paths[i]);
-		i++;
-	}
-	free(paths);
-}
-
 // Retorna a variável PATH do ambiente
-static char	*get_path_env(char **envp)
+char	*get_path_env(char **envp)
 {
 	int	i;
 
@@ -60,7 +44,7 @@ static char	*get_path_env(char **envp)
 }
 
 // Cria uma lista de paths a partir do PATH
-static char	**get_paths(const char *path_env)
+char	**get_paths(const char *path_env)
 {
 	char	**paths;
 	char	*token;
@@ -95,7 +79,7 @@ static char	**get_paths(const char *path_env)
 }
 
 // Procura o comando nos diretórios do PATH
-static char	*find_command(const char *cmd, char **envp)
+char	*find_command(const char *cmd, char **envp)
 {
 	char	**paths;
 	char	*full_path;
@@ -124,7 +108,7 @@ static char	*find_command(const char *cmd, char **envp)
 	return (NULL);
 }
 
-static void	execute_command(char **args, char **envp)
+void	execute_command(char **args, char **envp)
 {
 	pid_t	pid;
 	int		status;
@@ -155,7 +139,7 @@ static void	execute_command(char **args, char **envp)
 }
 
 // Divide a entrada em tokens
-static char	**tokenize_input(char *input)
+char	**tokenize_input(char *input)
 {
 	char	**args;
 	int		i;
@@ -177,7 +161,7 @@ static char	**tokenize_input(char *input)
 }
 
 // Captura a entrada do usuário
-static char	*get_prompt(void)
+char	*get_prompt(void)
 {
 	char	*input;
 

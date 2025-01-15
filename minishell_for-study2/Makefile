@@ -67,7 +67,7 @@ $(OBJ_PATH):
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(OBJS) $(LIBFT) $(LFLAGS) $(HEADERS) -o $(NAME)
 	@echo "$(GREEN)-------------------------------------------"
-	@echo "$(WHITE)  ✅ The [$(GREEN)MINISHELL$(WHITE)] has been compiled! ✅ "
+	@echo "$(WHITE)  ✅  The [$(GREEN)MINISHELL$(WHITE)] has been compiled! ✅ "
 	@echo "$(GREEN)-------------------------------------------"
 
 clean:

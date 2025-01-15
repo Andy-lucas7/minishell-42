@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:43:31 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/06/24 13:04:20 by bda-mota         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:10:09 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include <errno.h>
 
 # define PURPLE	"\001\033[1;35m\002"
-# define WHITE	"\001\033[1;37m\002"
+# define WHITE	"\001\033[0;37m\002"
 
 /* ==== FREE MEMORY ==== */
 void		free_minishell(t_minishell *shell);

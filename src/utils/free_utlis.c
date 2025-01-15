@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   free_utlis.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 16:27:03 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/09 20:47:02 by lserrao-         ###   ########.fr       */
+/*   Created: 2025/01/14 10:49:21 by lserrao-          #+#    #+#             */
+/*   Updated: 2025/01/14 14:35:00 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
+#include "../../includes/minishell.h"
 
-# define MINISHELL_H
-# include "../../lib/libft/libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <signal.h>
-# include <dirent.h>
-# include <string.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <sys/stat.h>
-# include <sys/wait.h>
-# include <sys/ioctl.h>
-# include <termios.h>
-# include <curses.h>
-# include <term.h>
+// Libera memória de uma lista de strings
+void	free_paths(char **paths)
+{
+	int	i;
 
-#endif
+	if (!paths)
+		return ;
+	i = 0;
+	while (paths[i])
+	{
+		free(paths[i]);
+		i++;
+	}
+	free(paths);
+}
