@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/01/15 16:41:53 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/01/16 10:42:02 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,14 +28,13 @@ LIBFT_PATH  := ./lib/libft
 LIBFT       := $(addprefix $(LIBFT_PATH)/, libft.a)
 
 # Fontes
-CFNCTS      := src/main/minishell.c \
-               src/utils/free_utils.c
+CFNCTS      := main/minishell.c utils/free_utils.c
 
 SRCS_PATH   := src
 OBJ_PATH    := objects
 
 # Arquivos fonte e objetos (sem subpastas para objetos)
-SRCS        := $(CFNCTS)
+SRCS        := $(addprefix $(SRCS_PATH)/, $(CFNCTS))
 OBJS        := $(addprefix $(OBJ_PATH)/, $(notdir $(CFNCTS:%.c=%.o)))
 
 # Cores
@@ -49,14 +48,19 @@ BOLD        := \033[1;1m
 # Regra padrão
 all: $(OBJ_PATH) $(NAME)
 
+debug:
+	@echo "SRCS = $(SRCS)"
+	@echo "OBJS = $(OBJS)"
+	@echo "CFNCTS = $(CFNCTS)"
+
 # Regra para compilar a libft
 $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
 # Compilando arquivos .c em .o na pasta objects
-$(OBJ_PATH)/%.o: src/%.c $(HEADER_FILE) | $(OBJ_PATH)
-	@$(CC) $(CFLAGS) -o $@ -c $<
-	@echo "$(BLUE)✔ Compiled: $< $(WHITE)"
+$(OBJ_PATH)/%.o: $(SRCS_PATH)/*/%.c $(HEADER_FILE) | $(OBJ_PATH)
+	@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
+	@echo "$(GREEN)Compiled: $(notdir $<) ✔$(WHITE)"
 
 # Criar o diretório objects
 $(OBJ_PATH):
@@ -79,7 +83,7 @@ fclean: clean
 	@echo "$(WHITE)     Cleaning all objects and binaries..."
 	@rm -rf $(NAME)
 	@make fclean -C $(LIBFT_PATH)
-	@echo "$(WHITE)    Cleaning [$(BLUE)MINISHELL$(WHITE)] complete!"
+	@echo "$(WHITE)    Cleaning $(BLUE)MINISHELL$(WHITE) complete!"
 
 # Recompilar tudo
 re: fclean all
