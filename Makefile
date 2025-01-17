@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/01/16 21:02:19 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/01/17 12:09:42 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,14 @@ MAKEFLAGS   += --silent
 
 # Cabeçalhos
 HEADERS     := -I ./includes
-HEADER_FILE := includes/minishell.h
+HEADER_FILE := includes/minishell.h includes/token.h
 
 # Caminho para a libft
 LIBFT_PATH  := ./lib/libft
 LIBFT       := $(addprefix $(LIBFT_PATH)/, libft.a)
 
 # Fontes
-CFNCTS      := main/minishell.c utils/free_utils.c
+CFNCTS      := main/minishell.c utils/free_utils.c token/token.c
 
 SRCS_PATH   := src
 OBJ_PATH    := objects
@@ -71,12 +71,16 @@ $(OBJ_PATH):
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(OBJS) $(LIBFT) $(LFLAGS) $(HEADERS) -o $(NAME)
 	@echo "$(GREEN)-------------------------------------------"
-	@echo "$(WHITE)  ✅  The [$(BLUE)MINISHELL$(WHITE)] has been compiled! ✅ "
+	@echo "$(WHITE)  ✅  The $(BLUE)MINISHELL$(WHITE) has been compiled! ✅ "
 	@echo "$(GREEN)-------------------------------------------"
+
+# Compilation.com com Valgrind
+val: $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all -q --track-origins=yes --track-fds=yes --trace-children-skip='*/bin/*,*/sbin/*' --suppressions=.readline.supp ./$(NAME)
 
 # Limpeza dos objetos
 clean:
-	@rm -rf $(OBJS)
+	@rm -rf $(OBJ_PATH)
 	@echo "$(WHITE)     The objects are cleaned now!"
 
 # Limpeza completa (objetos e binário)

@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:27:03 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/14 15:06:28 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:06:25 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define MINISHELL_H
 # include "../lib/libft/libft.h"
+# include "token.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -28,6 +29,16 @@
 # include <termios.h>
 # include <curses.h>
 # include <term.h>
+
+typedef struct s_minishell
+{
+	int			status;
+	char		*input;
+	char		*complete_path;
+	char		**env_copy;
+	char		**paths;
+	char		**cmd_args;
+}	t_minishell;
 
 char	*join_path(const char *dir, const char *cmd);
 void	free_paths(char **paths);
