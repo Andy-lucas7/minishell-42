@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/01/16 10:42:02 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/01/16 21:02:19 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJ_PATH    := objects
 
 # Arquivos fonte e objetos (sem subpastas para objetos)
 SRCS        := $(addprefix $(SRCS_PATH)/, $(CFNCTS))
-OBJS        := $(addprefix $(OBJ_PATH)/, $(notdir $(CFNCTS:%.c=%.o)))
+OBJS        := $(addprefix $(OBJ_PATH)/, $(CFNCTS:%.c=%.o))
 
 # Cores
 GREEN       := \033[1;32m
@@ -58,7 +58,8 @@ $(LIBFT):
 	@make -C $(LIBFT_PATH)
 
 # Compilando arquivos .c em .o na pasta objects
-$(OBJ_PATH)/%.o: $(SRCS_PATH)/*/%.c $(HEADER_FILE) | $(OBJ_PATH)
+$(OBJ_PATH)/%.o: $(SRCS_PATH)/%.c $(HEADER_FILE) | $(OBJ_PATH)
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
 	@echo "$(GREEN)Compiled: $(notdir $<) ✔$(WHITE)"
 
