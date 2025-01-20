@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bda-mota <bda-mota@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:49:06 by bda-mota          #+#    #+#             */
-/*   Updated: 2024/06/21 14:49:08 by bda-mota         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:45:06 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,20 @@ int	catalog_inputs(char *c, size_t *i)
 		return (SIMPLE);
 	else
 		return (WORD);
+}
+
+// Função para criar tokens
+t_token	*create_token(char *value, enum e_numerator type)
+{
+	t_token	*new_token;
+
+	new_token = malloc(sizeof(t_token));
+	if (!new_token)
+		return (NULL);
+	new_token->value = value;
+	new_token->type = type;
+	new_token->next = NULL;
+	return (new_token);
 }
 
 void	tokenizer(t_minishell *shell)

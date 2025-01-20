@@ -6,15 +6,17 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:46:53 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/14 15:05:52 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:47:59 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+#include "token.h"
 
 // pesquisar sobre parsing
 // pesquisar sobre tokenização
 
+// Função para unir diretórios e comandos
 char	*join_path(const char *dir, const char *cmd)
 {
 	char	*path;
@@ -47,34 +49,10 @@ char	*get_path_env(char **envp)
 char	**get_paths(const char *path_env)
 {
 	char	**paths;
-	char	*token;
-	char	*copy;
-	int		i;
 
-	copy = strdup(path_env);
-	if (!copy)
+	if (!path_env)
 		return (NULL);
-	paths = malloc(sizeof(char *) * 256);
-	if (!paths)
-	{
-		free(copy);
-		return (NULL);
-	}
-	i = 0;
-	token = strtok(copy, ":");
-	while (token && i < 255)
-	{
-		paths[i] = strdup(token); // Duplica cada token para evitar problemas de memória
-		if (!paths[i++])
-		{
-			free_paths(paths);
-			free(copy);
-			return (NULL);
-		}
-		token = strtok(NULL, ":");
-	}
-	paths[i] = NULL;
-	free(copy); // Libera a cópia original
+	paths = ft_split(path_env, ':');
 	return (paths);
 }
 
@@ -108,6 +86,7 @@ char	*find_command(const char *cmd, char **envp)
 	return (NULL);
 }
 
+// Executa um comando com base nos argumentos e ambiente
 void	execute_command(char **args, char **envp)
 {
 	pid_t	pid;
@@ -138,29 +117,60 @@ void	execute_command(char **args, char **envp)
 	free(cmd_path);
 }
 
-// Divide a entrada em tokens
-char	**tokenize_input(char *input)
+// Divide tokens em um array de argumentos para execve
+char	**convert_tokens_to_args(t_token *tokens)
 {
+	t_token	*current = tokens;
 	char	**args;
-	int		i;
+	int		count = 0;
+	int		i = 0;
 
-	args = malloc(sizeof(char *) * 256);
-	if (!args)
+	while (current)
 	{
-		perror("malloc");
-		return (NULL);
+		if (current->type == WORD)
+			count++;
+		current = current->next;
 	}
-	i = 0;
-	args[i] = strtok(input, " ");
-	while (args[i] && i < 255)
+
+	args = malloc(sizeof(char *) * (count + 1));
+	if (!args)
+		return (NULL);
+
+	current = tokens;
+	while (current)
 	{
-		args[++i] = strtok(NULL, " ");
+		if (current->type == WORD)
+			args[i++] = strdup(current->value);
+		current = current->next;
 	}
 	args[i] = NULL;
 	return (args);
 }
 
-// Captura a entrada do usuário
+void	free_args(char **args)
+{
+	int	i = 0;
+
+	if (!args)
+		return ;
+	while (args[i])
+		free(args[i++]);
+	free(args);
+}
+
+void	free_tokens(t_token *tokens)
+{
+	t_token	*tmp;
+
+	while (tokens)
+	{
+		tmp = tokens;
+		tokens = tokens->next;
+		free(tmp->value);
+		free(tmp);
+	}
+}
+
 char	*get_prompt(void)
 {
 	char	*input;
@@ -174,32 +184,37 @@ char	*get_prompt(void)
 // Função principal
 int	main(int argc, char **argv, char **envp)
 {
-	char	*input;
-	char	**args;
+	t_minishell	shell;
+	t_token		*current;
 
 	(void)argc;
 	(void)argv;
 	while (1)
 	{
-		input = get_prompt();
-		if (!input)
+		shell.input = get_prompt();
+		if (!shell.input)
 		{
 			printf("exit\n");
 			break ;
 		}
-		if (*input)
+		if (*(shell.input))
 		{
-			args = tokenize_input(input);
-			if (args && strcmp(args[0], "exit") == 0)
+			shell.tokens = NULL;
+			tokenizer(&shell);
+			current = shell.tokens;
+			while (current)
+				current = current->next;
+			if (shell.tokens && shell.tokens->type == WORD)
 			{
-				free(args);
-				break ;
-			}
-			if (args)
+				char **args = convert_tokens_to_args(shell.tokens);
 				execute_command(args, envp);
-			free(args);
+				free_args(args);
+			}
+
+			free_tokens(shell.tokens);
 		}
-		free(input);
+		free(shell.input);
 	}
 	return (EXIT_SUCCESS);
 }
+

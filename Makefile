@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/01/17 12:09:42 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/01/20 11:21:10 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ MAKEFLAGS   += --silent
 
 # Cabeçalhos
 HEADERS     := -I ./includes
-HEADER_FILE := includes/minishell.h includes/token.h
+HEADER_FILE := includes/minishell.h includes/token.h includes/structs.h
 
 # Caminho para a libft
 LIBFT_PATH  := ./lib/libft
@@ -52,6 +52,7 @@ debug:
 	@echo "SRCS = $(SRCS)"
 	@echo "OBJS = $(OBJS)"
 	@echo "CFNCTS = $(CFNCTS)"
+	@echo "HEADER_FILE = $(HEADER_FILE)"
 
 # Regra para compilar a libft
 $(LIBFT):
