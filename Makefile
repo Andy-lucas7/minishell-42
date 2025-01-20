@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/01/20 11:21:10 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/01/20 11:53:13 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LIBFT_PATH  := ./lib/libft
 LIBFT       := $(addprefix $(LIBFT_PATH)/, libft.a)
 
 # Fontes
-CFNCTS      := main/minishell.c utils/free_utils.c token/token.c
+CFNCTS      := main/minishell.c utils/free_utils.c token/token.c executor/pipe.c
 
 SRCS_PATH   := src
 OBJ_PATH    := objects
