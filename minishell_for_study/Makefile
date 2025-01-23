@@ -1,69 +1,96 @@
-NAME = minishell
+NAME		:= minishell
+CFLAGS		:= -Wextra -Wall -Werror -g3
+LFLAGS		:= -lreadline
+MAKEFLAGS += --silent
 
-CC = clang
+# LIBRARIES_PATH
+LIBFT_PATH = ./libft
+LIBFT = $(addprefix $(LIBFT_PATH)/, libft.a)
 
-CFLAGS = -Wall -Wextra -Werror -I includes/ -I libft/includes/
+# PATHS
+CC			:= gcc
+SRC_PATH 	:= sources
+OBJ_PATH	:= objects
 
-LIBFT = -L libft -lft
+# SOURCES
+CFILES		:=  main.c \
+				token/token.c token/linked_list_token.c token/handle_word.c token/check_grammar.c token/handle_metha.c \
+				token/check_inputs.c token/rearrange.c token/rearrange_utils.c token/variable_expansion.c token/variable_expansion2.c \
+				utils/free_memory.c utils/init.c utils/get_set.c utils/is_redir.c utils/utils.c utils/environ_copy.c\
+				heredoc/heredoc.c heredoc/heredoc_aux.c heredoc/heredoc_expansion.c \
+				ast/build_tree.c ast/tree_utils.c ast/search_branch.c exec/command.c \
+				exec/execution.c exec/path.c exec/pipe.c exec/redirects.c exec/execution_aux.c exec/treat_errors.c \
+				builtins/execute_builtins.c builtins/ft_echo.c builtins/ft_export.c builtins/export_utils.c builtins/export_utils2.c \
+				builtins/ft_pwd.c builtins/ft_unset.c builtins/ft_env.c builtins/ft_cd.c builtins/ft_exit.c \
+				signals/initialize_signals.c signals/handler_signals.c
 
-HEADER = minishell.h
+#PATH_FILES
+SRCS		:= $(addprefix $(SRC_PATH)/, $(CFILES))
+OBJS		:= $(addprefix $(OBJ_PATH)/, $(CFILES:%.c=%.o))
 
-BUILTINS = cd echo env exit export pwd unset
+#HEADERS
+HEADERS		:= -I ./includes
+HEADER_FILE := includes/structs.h includes/minishell.h includes/token.h includes/ast.h includes/exec.h includes/builtins.h includes/heredoc.h
 
-ENV = env get_env sort_env shlvl
+# COLORS
+GREEN	:=	\033[1;32m
+PURPLE	:=	\033[1;35m
+RED		:=	\033[1;31m
+WHITE	:=	\033[1;37m
+BOLD	:=	\033[1;1m
 
-EXEC = bin builtin exec
+#LOADING BAR
+TOTAL_FILES := $(words $(CFILES))
+COMPILED_CFILES := 0
 
-MAIN = minishell redir signal
+define progress_bar
+	@tput cuu1
+	@tput el
+	@echo "$(GREEN)[========================================>] $(WHITE)($1/$(TOTAL_FILES))"
+endef
 
-PARSING = line tokens expansions
+all: $(OBJ_PATH) $(NAME)
 
-TOOLS = fd free token type expansions parsing
+$(LIBFT):
+	@make -C $(LIBFT_PATH)
 
-SRC = $(addsuffix .c, $(addprefix srcs/builtins/, $(BUILTINS))) \
-	  $(addsuffix .c, $(addprefix srcs/env/, $(ENV))) \
-	  $(addsuffix .c, $(addprefix srcs/exec/, $(EXEC))) \
-	  $(addsuffix .c, $(addprefix srcs/main/, $(MAIN))) \
-	  $(addsuffix .c, $(addprefix srcs/parsing/, $(PARSING))) \
-	  $(addsuffix .c, $(addprefix srcs/tools/, $(TOOLS))) \
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HEADER_FILE) | $(OBJ_PATH)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -o $@ -c $<
+	@echo "                                     "
+	$(eval COMPILED_CFILES := $(shell echo $$(($(COMPILED_CFILES) + 1))))
+	$(call progress_bar,$(COMPILED_CFILES),$(words $(CFILES)))
 
-OBJ = $(SRC:c=o)
+$(OBJ_PATH):
+	@mkdir -p $(OBJ_PATH)
 
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	@echo "\n"
-	@make -C libft/
-	@echo "\033[0;32mCompiling minishell..."
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT)
-	@echo "\n\033[0mDone !"
-
-%.o: %.c
-	@printf "\033[0;33mGenerating minishell objects... %-33.33s\r" $@
-	@${CC} ${CFLAGS} -c $< -o $@
+$(NAME): $(LIBFT) $(OBJS)
+	@$(CC) $(OBJS) $(LIBFT) $(LFLAGS) $(HEADERS) -o $(NAME)
+	@echo "$(GREEN)-------------------------------------------"
+	@echo "$(WHITE)  ✅ The [$(GREEN)MINISHELL$(WHITE)] has been compiled! ✅ "
+	@echo "$(GREEN)-------------------------------------------"
 
 clean:
-	@echo "\033[0;31mCleaning libft..."
-	@make clean -C libft/
-	@echo "\nRemoving binaries..."
-	@rm -f $(OBJ)
-	@echo "\033[0m"
+	@rm -rf $(OBJS)
+	@echo "                                     "
+	@echo "$(WHITE)     Objects - $(RED)MINISHELL$(WHITE) - were cleaned!"
+	@echo "                                     "
 
-fclean:
-	@echo "\033[0;31mCleaning libft..."
-	@make fclean -C libft/
-	@echo "\nDeleting objects..."
-	@rm -f $(OBJ)
-	@echo "\nDeleting executable..."
-	@rm -f $(NAME)
-	@echo "\033[0m"
+fclean: clean
+	@echo "$(WHITE)              Cleaning all... 🧹"
+	@echo "                                     "
+	@rm -rf $(NAME)
+	@make fclean -C $(LIBFT_PATH)
+	@echo "$(WHITE)    ✨ Cleaning - MINISHELL - complete! ✨"
+	@echo "                                     "
+
+val: $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all -q --track-origins=yes --track-fds=yes --trace-children-skip='*/bin/*,*/sbin/*' --suppressions=.readline.supp ./$(NAME)
+
+clear:
+	clear
+	$(MAKE) all
 
 re: fclean all
 
-test: all
-	./minishell
-
-norm:
-	norminette $(SRC) includes/$(HEADER)
-
-.PHONY: clean fclean re test norm
+.PHONY: all, clean, fclean, re

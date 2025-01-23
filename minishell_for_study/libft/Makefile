@@ -1,68 +1,59 @@
-NAME = libft.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bsantana <bsantana@student.42sp.org.br     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/05/08 11:41:34 by bda-mota          #+#    #+#              #
+#    Updated: 2024/06/07 17:48:55 by bsantana         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-CC = clang
+NAME	:= libft.a
+SRC_DIR	:= src
+OBJ_DIR	:= obj
 
-CFLAGS = -Wall -Wextra -Werror -I includes/
+MAKEFLAGS	+= --silent
+CC		:= cc
+FLAGS	:= -Wall -Werror -Wextra -g3
+HEADER	:= -I ./src
 
-HEADER = $(addsuffix .h, $(addprefix includes/, libutils get_next_line ft_printf))
+CFILES	:= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
+			ft_isprint.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_strchr.c \
+			ft_strdup.c ft_strlcat.c ft_strlcpy.c  ft_strcpy.c  ft_strncpy.c ft_strlen.c ft_strncmp.c ft_strnstr.c ft_strrchr.c \
+			ft_tolower.c ft_toupper.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_itoa.c ft_strmapi.c ft_special_split.c \
+			ft_striteri.c ft_split.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_atol.c \
+			ft_free_matrix.c ft_lstnew.c ft_lstadd_back.c ft_lstadd_front.c ft_lstlast.c ft_lstsize.c \
+			ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstmap.c ft_strcmp.c ft_strcat.c ft_issign.c ft_strcspn.c \
+			get_next_line.c get_next_line_utils.c ft_isspace.c ft_strnchr.c ft_strndup.c ft_strstr.c ft_printf_fd.c
 
-FTIS = alnum alpha ascii count digit in print space spacenl where
+SRC		:= $(addprefix $(SRC_DIR)/, $(CFILES))
+OBJS	:= $(addprefix $(OBJ_DIR)/, $(notdir $(CFILES:%.c=%.o)))
 
-FTSKIP = space spacenl char chars
-
-FTLST = add_back add_front clear delone iter last map new size
-
-FTMATH = abs nbrlen hexlen baselen power
-
-FTMEM = bzero calloc memccpy memchr memcmp memcpy memdel memmove memset
-
-FTPUT = char endl nbr str char_fd endl_fd nbr_fd str_fd
-
-FTSTR = chr cmp dup isnum join lcat lcpy len mapi ncmp nstr rchr trim
-
-FTSUB = ft_str/ft_substr ft_str/ft_split
-
-FTTO = tolower toupper atoi itoa
-
-FTEX = gnl/get_next_line printf/ft_printf
-
-FTPRF = flagger branch_csp branch_duxo put_c put_s put_du put_o put_x put_p
-
-SRC = $(addsuffix .c, $(addprefix ft_is/ft_is, $(FTIS))) \
-	$(addsuffix .c, $(addprefix ft_lst/ft_lst, $(FTLST))) \
-	$(addsuffix .c, $(addprefix ft_math/ft_, $(FTMATH))) \
-	$(addsuffix .c, $(addprefix ft_mem/ft_, $(FTMEM))) \
-	$(addsuffix .c, $(addprefix ft_put/ft_put, $(FTPUT))) \
-	$(addsuffix .c, $(addprefix ft_skip/ft_skip_, $(FTSKIP))) \
-	$(addsuffix .c, $(addprefix ft_str/ft_str, $(FTSTR)) $(FTSUB)) \
-	$(addsuffix .c, $(addprefix ft_to/ft_, $(FTTO))) \
-	$(addsuffix .c, $(addprefix ft_, $(FTEX))) \
-	$(addsuffix .c, $(addprefix ft_printf/ft_printf_, $(FTPRF))) \
-
-OBJ = $(SRC:.c=.o)
+PURPLE	:=	\033[1;35m
+GREEN	:=	\033[1;32m
+RED		:=	\033[1;31m
+WHITE	:=	\033[1;37m
+BOLD	:=	\033[1;1m
 
 all: $(NAME)
 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	@$(CC) $(FLAGS) -o $@ -c $< $(HEADER)
 
-$(NAME): $(OBJ)
-	@echo "\n\n\033[0;32mCompiling libft..."
-	@ar rc $(NAME) $^
-	@ranlib $(NAME)
-	@echo "\033[0m"
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 
-%.o: %.c
-	@printf "\033[0;33mGenerating libft objects... %-33.33s\r" $@
-	@${CC} ${CFLAGS} -c $< -o $@
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 clean:
-	@rm -f $(OBJ)
+	rm -f $(OBJS)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
-norm:
-	norminette $(SRC) $(HEADER)
-
-.PHONY: all clean fclean re norm
+.PHONY: all clean fclean re

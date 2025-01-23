@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:51:00 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/20 11:39:04 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/01/22 20:56:24 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	tokenizer(t_minishell *shell)
 	while (*ptr)
 	{
 		i = 0;
-		if (isspace(*ptr))
+		if (ft_isspace(*ptr))
 			ptr++;
 		else if (*ptr == '|' || *ptr == '<' || *ptr == '>')
 		{
@@ -106,10 +106,51 @@ void	tokenizer(t_minishell *shell)
 		}
 		else
 		{
-			while (*ptr && !isspace(*ptr) && *ptr != '|' && *ptr != '<' && *ptr != '>')
+			while (*ptr && !ft_isspace(*ptr) && *ptr != '|' && *ptr != '<' && *ptr != '>')
 				token[i++] = *ptr++;
 			token[i] = '\0';
 			add_token(shell, token, WORD);
 		}
 	}
+}
+
+void	free_tokens(t_token *tokens)
+{
+	t_token	*tmp;
+
+	while (tokens)
+	{
+		tmp = tokens;
+		tokens = tokens->next;
+		free(tmp->value);
+		free(tmp);
+	}
+}
+
+// Divide tokens em um array de argumentos para execve
+char	**convert_tokens_to_args(t_token *tokens)
+{
+	t_token	*current = tokens;
+	char	**args;
+	int		count = 0;
+	int		i = 0;
+
+	while (current)
+	{
+		if (current->type == WORD)
+			count++;
+		current = current->next;
+	}
+	args = malloc(sizeof(char *) * (count + 1));
+	if (!args)
+		return (NULL);
+	current = tokens;
+	while (current)
+	{
+		if (current->type == WORD)
+			args[i++] = strdup(current->value);
+		current = current->next;
+	}
+	args[i] = NULL;
+	return (args);
 }

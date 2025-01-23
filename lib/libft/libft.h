@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 18:01:15 by lserrao-          #+#    #+#             */
-/*   Updated: 2024/11/27 05:02:09 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/01/22 20:46:38 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_list
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
+int		ft_isspace(int c);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);

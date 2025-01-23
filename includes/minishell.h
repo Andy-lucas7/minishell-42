@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:27:03 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/20 11:40:19 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:32:20 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,5 @@ char	*get_path_env(char **envp);
 char	**get_paths(const char *path_env);
 char	*find_command(const char *cmd, char **envp);
 void	execute_command(char **args, char **envp);
-char	**tokenize_input(char *input);
-char	*get_prompt(void);
 
 #endif
