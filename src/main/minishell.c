@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:46:53 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/22 21:03:25 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:20:26 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,9 @@ int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
-
 	if (!isatty(STDIN_FILENO))
 	{
-		fprintf(stderr, "Error: Not a terminal.\n");
+		write(1, "Error:\nNot a terminal.\n", 23);
 		return (EXIT_FAILURE);
 	}
 	prompt(envp);

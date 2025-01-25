@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:51:00 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/22 20:56:24 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/01/24 11:52:20 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 
 enum e_numerator	get_token_type(char *str)
 {
-	if (isspace(*str))
+	if (ft_isspace(*str))
 		return (SSPACE);
 	else if (!!ft_strncmp(str, "<<", 2))
 		return (HEREDOC);
@@ -94,7 +94,7 @@ void	tokenizer(t_minishell *shell)
 	while (*ptr)
 	{
 		i = 0;
-		if (ft_isspace(*ptr))
+		if (ft_isspace(*ptr) || *ptr == '\'' || *ptr == '\"')
 			ptr++;
 		else if (*ptr == '|' || *ptr == '<' || *ptr == '>')
 		{

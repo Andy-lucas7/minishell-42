@@ -6,10 +6,12 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:18:50 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/20 11:25:54 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/01/23 20:03:55 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 enum e_numerator
 {
@@ -46,3 +48,5 @@ typedef struct s_minishell
 	char		**cmd_args;
 	t_token		*tokens;
 }	t_minishell;
+
+#endif
