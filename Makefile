@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/01/21 15:26:51 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/01/27 17:07:47 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,11 @@ debug:
 	@echo "OBJS = $(OBJS)"
 	@echo "CFNCTS = $(CFNCTS)"
 	@echo "HEADER_FILE = $(HEADER_FILE)"
+
+# Mostra dependencias dos Objetos
+depend:
+	@$(CC) -MM $(CFLAGS) $(HEADERS) $(SRCS) > dependencies.mk
+	@echo -e "$(GREEN)Dependencies updated in dependencies.mk!$(WHITE)"
 
 # Regra para compilar a libft
 $(LIBFT):

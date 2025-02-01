@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:32:59 by rapdos-s          #+#    #+#             */
-/*   Updated: 2022/11/27 09:32:59 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2025/01/31 18:15:02 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exit_handler(t_mini *ms, const char *msg, const int code)
 	if (msg)
 		ft_putendl_fd ((char *) msg, 2);
 	if (!code && !msg)
-		ft_putendl_fd (EXIT_MSG, 1);
+		exit(EXIT_SUCCESS);
 	ms -> input = free_ptr (ms -> input);
 	ms -> prompt = free_ptr (ms -> prompt);
 	ms -> token = free_token (ms -> token);

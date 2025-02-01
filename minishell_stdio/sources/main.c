@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabustam <rabustam@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 01:46:43 by rapdos-s          #+#    #+#             */
-/*   Updated: 2023/01/07 23:28:52 by rabustam         ###   ########.fr       */
+/*   Updated: 2025/01/30 20:17:29 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*get_input(t_mini *ms, const char *prompt)
 {
 	char	*input;
 
-	input = readline (prompt);
+	input = readline(prompt);
 	if (input && input[0])
 		add_history (input);
 	else if (!input)
@@ -52,10 +52,10 @@ static t_mini	ft_init(int argc, char *argv[], char **envp)
 	ft_bzero (&ms, sizeof (t_mini));
 	if (argc > 1)
 		exit_handler (&ms, "Usage: ./minishell", 1);
-	ft_bzero (&sa, sizeof (sa));
+	ft_bzero (&sa, sizeof(sa));
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = ft_sa_handler;
-	sigaction (SIGINT, &sa, NULL);
+	sigaction(SIGINT, &sa, NULL);
 	signal(SIGQUIT, SIG_IGN);
 	ms.envp = ft_matdup (envp);
 	if (!envp)

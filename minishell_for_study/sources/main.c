@@ -6,24 +6,11 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 14:44:20 by bda-mota          #+#    #+#             */
-/*   Updated: 2025/01/22 11:50:21 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:34:23 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int	main(void)
-{
-	char	*input;
-
-	while (1)
-	{
-		input = prompt();
-		if (input == NULL)
-			return (EXIT_SUCCESS);
-	}
-	return (EXIT_SUCCESS);
-}
 
 static char	*prompt(void)
 {
@@ -74,4 +61,17 @@ void	processor(t_minishell *shell)
 	build_tree(&shell->tree, &shell->token);
 	executor(shell->tree);
 	down_tree(&shell->tree);
+}
+
+int	main(void)
+{
+	char	*input;
+
+	while (1)
+	{
+		input = prompt();
+		if (input == NULL)
+			return (EXIT_SUCCESS);
+	}
+	return (EXIT_SUCCESS);
 }

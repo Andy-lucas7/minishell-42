@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:46:53 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/23 20:20:26 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:29:19 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	*prompt(char **envp)
 	shell.input = NULL;
 	while (1)
 	{
-		shell.input = readline("\033[1;36mMinishell: \033[0m");
+		shell.input = readline("\033[1;34mThomas_\033[1;36mShell\033[1;34mby: \033[0m");
 		if (!shell.input)
 		{
 			printf("exit\n");
@@ -85,6 +85,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
+	signal(SIGQUIT, SIG_IGN);
 	if (!isatty(STDIN_FILENO))
 	{
 		write(1, "Error:\nNot a terminal.\n", 23);
