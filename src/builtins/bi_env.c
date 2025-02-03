@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	bi_env(t_minishell *ms, char **args, char ***envp)
+void	bi_env(t_mini *ms, char **args, char ***envp)
 {
 	int	count;
 
