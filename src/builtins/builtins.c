@@ -6,13 +6,13 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:16:29 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/03 17:16:32 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:43:35 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtins(t_minishell *sh, char ***envp, char **args)
+int	builtins(t_mini *sh, char ***envp, char **args)
 {
 	if (!args || !*args || !*envp)
 		return (-1);
