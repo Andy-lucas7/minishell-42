@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/02/03 15:59:04 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/02/03 19:26:10 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,3 @@ re: fclean all
 
 # Especificando que esses alvos não são arquivos
 .PHONY: all, clean, fclean, re
-
-
-# readline("\001\033[1;32mSHELL\001\033[1;37m\002-E: \001\033[0m\002");

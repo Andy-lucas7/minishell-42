@@ -6,98 +6,83 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:46:53 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/03 17:25:07 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:17:13 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
-// // pesquisar sobre parsing
-// // pesquisar sobre tokenização
+static void	cleaner(t_mini *ms)
+{
+	ms->input = free_ptr(ms->input);
+	ms->token = free_token(ms->token);
+	unlink("__heredoc");
+}
 
-// // Retorna a variável PATH do ambiente
-// char	*get_path_env(char **envp)
-// {
-// 	int	i;
+static char	*get_input(t_mini *ms, const char *prompt)
+{
+	char	*input;
 
-// 	i = 0;
-// 	while (envp[i])
-// 	{
-// 		if (strncmp(envp[i], "PATH=", 5) == 0)
-// 			return (envp[i] + 5);
-// 		i++;
-// 	}
-// 	return (NULL);
-// }
+	input = readline(prompt);
+	if (input && input[0])
+		add_history(input);
+	else if (!input)
+		exit_handler (ms, EXIT_MSG, 0);
+	return (input);
+}
 
-// void	free_args(char **args)
-// {
-// 	int	i;
+static void	ft_sa_handler(int sig, siginfo_t *info, void *context)
+{
+	(void) context;
+	printf("\n");
+	if (sig == SIGINT && info->si_pid)
+	{
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
 
-// 	i = 0;
-// 	if (!args)
-// 		return ;
-// 	while (args[i])
-// 		free(args[i++]);
-// 	free(args);
-// }
+static t_mini	ft_init(int argc, char **argv, char **envp)
+{
+	t_mini				ms;
+	struct sigaction	sa;
 
-// static char	*prompt(char **envp)
-// {
-// 	t_minishell	shell;
-// 	t_token		*current;
-// 	char		**args;
-
-// 	shell.input = NULL;
-// 	while (1)
-// 	{
-// 		shell.input = readline("\001\033[1;32mSHELL\001\033[1;37m\002-E: \001\033[0m\002");
-// 		if (!shell.input)
-// 		{
-// 			printf("exit\n");
-// 			rl_clear_history();
-// 			break ;
-// 		}
-// 		if (*shell.input)
-// 		{
-// 			add_history(shell.input);
-// 			shell.tokens = NULL;
-// 			tokenizer(&shell);
-// 			current = shell.tokens;
-// 			while (current)
-// 				current = current->next;
-// 			if (shell.tokens && shell.tokens->type == WORD)
-// 			{
-// 				args = convert_tokens_to_args(shell.tokens);
-// 				execute_command(args, envp);
-// 				free_args(args);
-// 			}
-// 			free_tokens(shell.tokens);
-// 		}
-// 		free(shell.input);
-// 	}
-// 	return (NULL);
-// }
-
-// // Função principal
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	(void)argc;
-// 	(void)argv;
-// 	signal(SIGQUIT, SIG_IGN);
-// 	if (!isatty(STDIN_FILENO))
-// 	{
-// 		write(1, "Error:\nNot a terminal.\n", 23);
-// 		return (EXIT_FAILURE);
-// 	}
-// 	prompt(envp);
-// 	return (EXIT_SUCCESS);
-// }
+	(void) argv;
+	ft_bzero(&ms, sizeof(t_mini));
+	if (argc > 1)
+		exit_handler(&ms, "Usage: ./minishell", 1);
+	ft_bzero (&sa, sizeof(sa));
+	sa.sa_flags = SA_SIGINFO;
+	sa.sa_sigaction = ft_sa_handler;
+	sigaction(SIGINT, &sa, NULL);
+	signal(SIGQUIT, SIG_IGN);
+	ms.envp = ft_matdup(envp);
+	if (!envp)
+		exit_handler(&ms, "Can't allocate memory to environment variables", 1);
+	ms.prompt = ft_strdup("\001\033[1;32mSHELL\001\033[1;37m\002-E: \001\033[0m\002");
+	if (!ms.prompt)
+		exit_handler(&ms, "Can't allocate memory to prompt name", 1);
+	return (ms);
+}
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_mini	ms;
 
 	ms = ft_init(argc, argv, envp);
-	
+	while (1)
+	{
+		ms.input = get_input (&ms, ms.prompt);
+		if (ms.input && *ms.input)
+		{
+			if (!parser(&ms.token, &ms.input) && !syntax_checker(&ms))
+			{
+				expander(&ms, &ms.token, ms.envp);
+				executor(&ms);
+			}
+		}
+		cleaner(&ms);
+	}
+	return (0);
 }
