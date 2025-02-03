@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:04:37 by rapdos-s          #+#    #+#             */
-/*   Updated: 2023/01/04 11:04:37 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:40:24 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ void	ft_exit(t_mini *ms, char **cmd)
 	}
 	if (!check_for_zeros(cmd[1]))
 	{
-		cmd = free_mat(cmd);
 		exit_handler (ms, NULL, 0);
+		cmd = free_mat(cmd);
 	}
 	if (!cmd[2] && is_valid_number (cmd[1]))
 	{
 		code = ft_atoi (cmd[1]);
-		cmd = free_mat(cmd);
+		//cmd = free_mat(cmd);
 		exit_handler (ms, "exited with error number", code);
 	}
-	cmd = free_mat(cmd);
 	exit_handler (ms, "-" PROMPT_MSG ": exit: " INVALID_USAGE, 42);
+	cmd = free_mat(cmd);
 }

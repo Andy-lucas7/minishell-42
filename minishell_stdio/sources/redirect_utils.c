@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:56:00 by rabustam          #+#    #+#             */
-/*   Updated: 2025/02/01 17:23:26 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:36:38 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,9 @@ void	set_redirect(t_mini *ms, char **cmd, int *fd, char **ret)
 		else
 			ret[j++] = ft_strdup(cmd[i++]);
 	}
-	cmd = free_mat(cmd);
+	if (cmd)
+	{
+		free_mat(cmd);
+		cmd = NULL;
+	}
 }

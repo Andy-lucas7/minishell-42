@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	bi_echo(t_minishell *sh, char **args)
+void	bi_echo(t_mini *sh, char **args)
 {
 	int	count;
 	int	aux;

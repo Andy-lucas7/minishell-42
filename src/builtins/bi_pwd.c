@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	bi_pwd(t_minishell *ms, char **args, char **envp)
+void	bi_pwd(t_mini *ms, char **args, char **envp)
 {
 	int	count;
 

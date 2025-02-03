@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:36:40 by rabustam          #+#    #+#             */
-/*   Updated: 2025/02/03 11:30:07 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:38:28 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,12 @@ static void	exit_child(t_mini *ms, char **cmd, int **fd, int code)
 	ms -> envp = free_mat (ms -> envp);
 	cmd = free_mat(cmd);
 	i = -1;
-	while (fd[++i])
-		fd[i] = (int *) free_ptr((char *) fd[i]);
-	fd = (int **) free_mat((char **) fd);
+	if (fd)
+	{
+		while (fd[++i])
+			fd[i] = (int *) free_ptr((char *) fd[i]);
+		fd = (int **) free_mat((char **) fd);
+	}
 	rl_clear_history ();
 	unlink("__heredoc");
 	i = 0;
@@ -102,7 +105,10 @@ void	child(t_mini *ms, char **cmd, int **fd, int i)
 	in = 0;
 	cmd = redirect(ms, cmd, &out, &in);
 	if (!cmd || *cmd == NULL)
+	{
+		free_mat(cmd);
 		handle_invalid_file(ms);
+	}
 	if (i && !in)
 		dup2(fd[i - 1][0], 0);
 	if (fd[i] && !out)
