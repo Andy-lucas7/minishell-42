@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:27:03 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/03 17:30:15 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:23:59 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,5 @@
 # include <unistd.h>
 # include <signal.h>
 # include <sys/wait.h>
-
-
-char	*join_path(const char *dir, const char *cmd);
-void	free_paths(char **paths);
-char	*get_path_env(char **envp);
-char	**get_paths(const char *path_env);
-char	*find_command(const char *cmd, char **envp);
-void	execute_command(char **args, char **envp);
 
 #endif

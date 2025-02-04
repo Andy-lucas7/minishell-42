@@ -6,24 +6,44 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:21 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/21 15:29:00 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:21:12 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "minishell.h"
 
-// Libera memória de uma lista de strings
-void	free_paths(char **paths)
+char	*free_ptr(char *ptr)
 {
-	int	i;
+	free(ptr);
+	ptr = NULL;
+	return (NULL);
+}
 
-	if (!paths)
-		return ;
+char	**free_mat(char **mat)
+{
+	size_t	i;
+
 	i = 0;
-	while (paths[i])
+	while (mat && mat[i])
 	{
-		free(paths[i]);
+		mat[i] = free_ptr(mat[i]);
 		i++;
 	}
-	free(paths);
+	free (mat);
+	mat = NULL;
+	return (NULL);
+}
+
+t_token	*free_token(t_token *token)
+{
+	t_token	*temp;
+
+	while (token)
+	{
+		temp = token;
+		token -> cmd = free_ptr (token -> cmd);
+		token = token -> next;
+		free (temp);
+	}
+	return (NULL);
 }
