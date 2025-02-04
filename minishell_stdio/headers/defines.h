@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 08:16:35 by rapdos-s          #+#    #+#             */
-/*   Updated: 2022/11/24 08:16:35 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2025/02/04 19:32:48 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 
 # ifndef SEP
 #  define SEP -1
+# endif
+
+# ifndef SIZE
+#  define SIZE 4096
 # endif
 
 enum e_type{
