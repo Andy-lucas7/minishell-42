@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 09:14:32 by rabustam          #+#    #+#             */
-/*   Updated: 2025/02/05 18:29:06 by lserrao-         ###   ########.fr       */
+/*   Created: 2025/02/05 18:04:22 by lserrao-          #+#    #+#             */
+/*   Updated: 2025/02/05 18:32:15 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	check_next(t_mini *ms, t_token *token, int type)
 {
 	if (type == PIPE && token->next && token->next->type == PIPE)
 	{
-		ft_printf("minishell: syntax error near unexpected token `%s'\n", \
+		printf("SHELL-E: syntax error near unexpected token %s\n", \
 		token->next->cmd);
 		ms->error = 2;
 		return (2);
@@ -25,7 +25,7 @@ static int	check_next(t_mini *ms, t_token *token, int type)
 	(type == REDIRECT && (token->next->type == PIPE || \
 	token->next->type == REDIRECT || token->next->type == HEREDOC)))
 	{
-		ft_printf("minishell: syntax error near unexpected token `%s'\n", \
+		printf("SHELL-E: syntax error near unexpected token %s\n", \
 		token->cmd);
 		ms->error = 2;
 		return (2);
@@ -52,7 +52,7 @@ int	syntax_checker(t_mini *ms)
 		}
 		else if (ft_strchr(temp->cmd, '\\'))
 		{
-			ft_printf("minishell: syntax error, token `\\' is not accepted\n");
+			printf("SHELL-E: syntax error, token \\ is not accepted\n");
 			ms->error = 2;
 			return (2);
 		}
