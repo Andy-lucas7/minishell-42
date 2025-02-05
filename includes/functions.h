@@ -6,14 +6,13 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:34:59 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/04 17:38:59 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:49:36 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
 # include "minishell.h"
-
 
 void	exit_handler(t_mini *ms, const char *msg, const int code);
 int		check_quotes(char c, int quotes);

@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:27:48 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/05 18:28:46 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:48:16 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # endif
 
 # ifndef EXIT_MSG
-#  define EXIT_MSG "\033[1;32mSHELLl\033[1;37min matador de porco diz: Até logo, \
+#  define EXIT_MSG "\033[1;32mSHELL\033[1;37min matador de porco diz: Até logo, \
 	humano.\033[0m"
 # endif
 
