@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/27 12:22:47 by rabustam          #+#    #+#             */
-/*   Updated: 2025/02/05 17:39:11 by lserrao-         ###   ########.fr       */
+/*   Created: 2025/02/04 18:02:51 by lserrao-          #+#    #+#             */
+/*   Updated: 2025/02/05 17:46:18 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_expand	init_expansion(t_mini *ms, char *cmd, char **envp, t_expand exp)
+static t_expand	init_expantion(t_mini *ms, char *cmd, char **envp, t_expand exp)
 {
 	while (cmd[++exp.end])
 	{
@@ -36,28 +36,6 @@ static t_expand	init_expansion(t_mini *ms, char *cmd, char **envp, t_expand exp)
 		}
 	}
 	return (exp);
-}
-
-char	*expand(t_mini *ms, char *cmd, char **envp)
-{
-	t_expand	exp;
-
-	ft_bzero (&exp, sizeof(t_expand));
-	while (cmd[exp.i])
-		exp.ex_n += 1 * (cmd[exp.i++] == '$');
-	exp.ex = (exp.ex_n * 2) + 2;
-	exp.hold_str = ft_calloc(exp.ex, sizeof(char *));
-	if (!exp.hold_str)
-		return (NULL);
-	exp.ex = 0;
-	exp.end = -1;
-	exp = init_expansion (ms, cmd, envp, exp);
-	if (cmd[exp.start] == '$')
-		exp.hold_str[exp.ex++] = get_envp(ms, ft_substr(cmd, exp.start, \
-		exp.end - exp.start), envp);
-	else
-		exp.hold_str[exp.ex++] = ft_substr(cmd, exp.start, exp.end - exp.start);
-	return (ft_mattstr_copy(exp.hold_str));
 }
 
 static char	*expand_quotes(char *cmd)
@@ -84,6 +62,28 @@ static char	*expand_quotes(char *cmd)
 		return (ft_strdup(""));
 	}
 	return (ft_mattstr_copy(ret));
+}
+
+char	*expand(t_mini *ms, char *cmd, char **envp)
+{
+	t_expand	exp;
+
+	ft_bzero(&exp, sizeof(t_expand));
+	while (cmd[exp.i])
+		exp.ex_n += 1 * (cmd[exp.i++] == '$');
+	exp.ex = (exp.ex_n * 2) + 2;
+	exp.hold_str = ft_calloc(exp.ex, sizeof(char *));
+	if (!exp.hold_str)
+		return (NULL);
+	exp.ex = 0;
+	exp.end = -1;
+	exp = init_expantion(ms, cmd, envp, exp);
+	if (cmd[exp.start] == '$')
+		exp.hold_str[exp.ex++] = get_envp(ms, ft_substr(cmd, exp.start, \
+		exp.end - exp.start), envp);
+	else
+		exp.hold_str[exp.ex++] = ft_substr(cmd, exp.start, exp.end - exp.start);
+	return (ft_mattstr_copy(exp.hold_str));
 }
 
 void	expander(t_mini *ms, t_token **head, char **envp)

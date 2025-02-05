@@ -1,51 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 10:49:21 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/04 17:35:49 by lserrao-         ###   ########.fr       */
+/*   Created: 2025/02/04 17:51:55 by lserrao-          #+#    #+#             */
+/*   Updated: 2025/02/04 17:58:52 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minishell.h"
 
-char	*free_ptr(char *ptr)
+void	close_fds(int **fd)
 {
-	free(ptr);
-	ptr = NULL;
-	return (NULL);
-}
-
-char	**free_mat(char **mat)
-{
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (mat && mat[i])
+	while (fd[i])
 	{
-		mat[i] = free_ptr(mat[i]);
+		close(fd[i][0]);
+		close(fd[i][1]);
 		i++;
 	}
-	free (mat);
-	mat = NULL;
-	return (NULL);
 }
 
-t_token	*free_token(t_token *token)
+char	**token_to_mat(t_token *token)
 {
+	int		i;
+	int		j;
+	char	**ret;
 	t_token	*temp;
 
-	while (token)
+	temp = token;
+	i = 0;
+	while (temp && temp->type != PIPE)
 	{
-		temp = token;
-		token -> cmd = free_ptr (token -> cmd);
-		token = token -> next;
-		free (temp);
+		i++;
+		temp = temp->next;
 	}
-	return (NULL);
+	ret = ft_calloc((i + 1), sizeof(char *));
+	if (!ret)
+		return (NULL);
+	j = -1;
+	while (++j < i)
+	{
+		ret[j] = ft_strdup(token->cmd);
+		token = token->next;
+	}
+	ret[j] = NULL;
+	return (ret);
 }
-

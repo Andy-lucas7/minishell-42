@@ -6,60 +6,33 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:09:57 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/22 20:53:06 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/05 17:54:12 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static long int	ft_len(int n)
-{
-	int	len;
-
-	len = 0;
-	if (n <= 0)
-		len = 1;
-	while (n != 0)
-	{
-		len++;
-		n = n / 10;
-	}
-	return (len);
-}
-
-static char	*ft_char(char *s, unsigned int num, long int len)
-{
-	while (num > 0)
-	{
-		s[len--] = 48 + (num % 10);
-		num = num / 10;
-	}
-	return (s);
-}
-
 char	*ft_itoa(int n)
 {
-	char			*s;
-	long int		len;
-	unsigned int	num;
-	int				sign;
+	char	*num;
+	int		i;
+	int		temp;
 
-	sign = 1;
-	len = ft_len(n);
-	s = (char *)malloc(sizeof(char ) * (len + 1));
-	if (!s)
-		return (NULL);
-	s[len--] = '\0';
-	if (n == 0)
-		s[0] = '0';
-	if (n < 0)
+	temp = n;
+	if (!temp)
+		return (ft_strdup("0"));
+	i = 0;
+	while (temp)
 	{
-		sign *= -1;
-		num = n * -1;
-		s[0] = '-';
+		temp = temp / 10;
+		i++;
 	}
-	else
-		num = n;
-	s = ft_char(s, num, len);
-	return (s);
+	num = ft_calloc(i + 1, sizeof(char));
+	while (n)
+	{
+		num[i - 1] = (n % 10) + 48;
+		n = n / 10;
+		i--;
+	}
+	return (num);
 }

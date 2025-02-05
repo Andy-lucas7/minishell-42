@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor.c                                         :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/30 18:56:10 by rabustam          #+#    #+#             */
-/*   Updated: 2025/02/04 17:51:05 by lserrao-         ###   ########.fr       */
+/*   Created: 2025/01/21 15:25:38 by lserrao-          #+#    #+#             */
+/*   Updated: 2025/02/04 17:51:12 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_executor	init_executor(t_mini *ms)
 	ex.pid = 0;
 	ex.status = 0;
 	ex.n_pros = 1;
-	ex.temp = ms -> token;
+	ex.temp = ms->token;
 	ex.cmd = token_to_mat(ex.temp);
 	while (ex.temp)
 	{
@@ -35,7 +35,7 @@ static t_executor	init_executor(t_mini *ms)
 	i = -1;
 	while (++i < (ex.n_pros - 1))
 		pipe(ex.fd[i]);
-	ex.temp = ms -> token;
+	ex.temp = ms->token;
 	return (ex);
 }
 
@@ -43,14 +43,14 @@ static int	exec_on_parent(t_mini *ms, int n_pros, char **cmd, int **fd)
 {
 	if (n_pros > 1)
 		return (-1);
-	if (!ft_strncmp (*cmd, "echo", 4))
+	if (!ft_strncmp(*cmd, "echo", 4))
 		return (-1);
-	if (!ft_strncmp (*cmd, "pwd", 3))
+	if (!ft_strncmp(*cmd, "pwd", 3))
 		return (-1);
-	if (!ft_strncmp (*cmd, "env", 3))
+	if (!ft_strncmp(*cmd, "env", 3))
 		return (-1);
-	if (!ft_strncmp (*cmd, "exit", 5))
-		fd = (int **) free_mat((char **) fd);
+	if (!ft_strncmp(*cmd, "exit", 4))
+		fd = (int **)free_mat((char **) fd);
 	if (!execbi(ms, cmd, &ms->envp, ms->prompt))
 		return (-1);
 	return (n_pros);

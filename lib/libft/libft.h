@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 18:01:15 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/01/22 20:46:38 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:00:14 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		ft_isspace(int c);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
+int		ft_findchr(char *var, char c);
 size_t	ft_strlcpy(char *dest, const char *src, size_t destsize);
 size_t	ft_strlen(const char *s);
 char	*ft_strrchr(const char *str, int c);
