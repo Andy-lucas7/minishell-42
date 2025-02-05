@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/02/05 19:13:10 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/02/05 19:17:48 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LIBFT_PATH  := ./lib/libft
 LIBFT       := $(addprefix $(LIBFT_PATH)/, libft.a)
 
 # Fonte
-CFNCTS      := main/minishell.c \
+CFNCTS      :=  main/minishell.c \
 				executor/executor.c \
 				executor/exec_utils.c \
 				executor/child.c \
@@ -42,7 +42,13 @@ CFNCTS      := main/minishell.c \
 				syntax/syntax_checker.c \
 				syntax/lexer.c \
 				utils/utils.c \
-				utils/free_utils.c
+				utils/free_utils.c \
+				builtins/bi_cd.c \
+				builtins/bi_echo.c \
+				builtins/bi_env.c \
+				builtins/bi_pwd.c \
+				builtins/bi_unset.c \
+				builtins/builtins.c
 
 SRCS_PATH   := src
 OBJ_PATH    := objects

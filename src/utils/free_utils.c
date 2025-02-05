@@ -6,10 +6,9 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:49:21 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/04 17:35:49 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:20:36 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -48,4 +47,3 @@ t_token	*free_token(t_token *token)
 	}
 	return (NULL);
 }
-

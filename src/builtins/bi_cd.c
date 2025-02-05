@@ -3,11 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/03 20:44:00 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:28:03 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"

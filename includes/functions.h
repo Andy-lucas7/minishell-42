@@ -6,13 +6,12 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:34:59 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/05 18:49:36 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:27:23 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
-# include "minishell.h"
 
 void	exit_handler(t_mini *ms, const char *msg, const int code);
 int		check_quotes(char c, int quotes);
@@ -35,12 +34,10 @@ void	child(t_mini *ms, char **cmd, int **fd, int i);
 char	**redirect(t_mini *ms, char **cmd, int *out, int *in);
 void	set_redirect(t_mini *ms, char **cmd, int *fd, char **ret);
 int		execbi(t_mini *ms, char **cmd, char ***envp, char *prompt);
-void	ft_echo(t_mini *ms, char **cmd);
-void	ft_cd(t_mini *ms, char **cmd, char ***envp);
-void	ft_pwd(t_mini *ms, char **cmd, char **envp);
-void	ft_export(t_mini *ms, char **cmd, char ***envp);
-void	ft_unset(t_mini *ms, char **cmd, char ***envp);
-void	ft_env(t_mini *ms, char **cmd, char ***envp);
-void	ft_exit(t_mini *ms, char **cmd);
+int		builtins(t_mini *sh, char ***envp, char **args);
+void	bi_unset(t_mini *sh, char **args, char ***envp);
+void	bi_pwd(t_mini *ms, char **args, char **envp);
+void	bi_env(t_mini *ms, char **args, char ***envp);
+void	bi_echo(t_mini *sh, char **args);
 
 #endif
