@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/02/05 19:17:48 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/02/05 19:44:20 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ MAKEFLAGS   += --silent
 
 # Cabeçalhos
 HEADERS     := -I ./includes
-HEADER_FILE := includes/minishell.h includes/defines.h includes/functions.c includes/structs.h
+HEADER_FILE := includes/minishell.h includes/defines.h includes/functions.h includes/structs.h
 
 # Caminho para a libft
 LIBFT_PATH  := ./lib/libft
@@ -97,7 +97,7 @@ $(OBJ_PATH):
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(OBJS) $(LIBFT) $(LFLAGS) $(HEADERS) -o $(NAME)
 	@echo "$(GREEN)-------------------------------------------"
-	@echo "$(WHITE)  ✅  The $(BLUE)MINISHELL$(WHITE) has been compiled! ✅ "
+	@echo "$(WHITE)  ✅  The $(GREEN)SHELL$(WHITE)-E has been compiled! ✅ "
 	@echo "$(GREEN)-------------------------------------------"
 
 # Compilation.com com Valgrind

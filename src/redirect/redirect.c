@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:56:42 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/05 19:04:21 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:48:27 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ char	**redirect(t_mini *ms, char **cmd, int *out, int *in)
 	if (fd[0] != -1)
 	{
 		dup2(fd[0], 0);
-		clode(fd[0]);
+		close(fd[0]);
 		*in = 1;
 	}
 	if (fd[1] != -1)
 	{
 		dup2(fd[1], 1);
-		clode(fd[1]);
+		close(fd[1]);
 		*out = 1;
 	}
 	return (ret);

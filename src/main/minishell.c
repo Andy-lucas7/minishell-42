@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:46:53 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/03 18:17:13 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:47:50 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int argc, char **argv, char **envp)
 		ms.input = get_input (&ms, ms.prompt);
 		if (ms.input && *ms.input)
 		{
-			if (!parser(&ms.token, &ms.input) && !syntax_checker(&ms))
+			if (!parser(&ms.token, ms.input) && !syntax_checker(&ms))
 			{
 				expander(&ms, &ms.token, ms.envp);
 				executor(&ms);

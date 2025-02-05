@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:34:59 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/05 19:27:23 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:45:59 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*free_ptr(char *ptr);
 char	**free_mat(char **mat);
 t_token	*free_token(t_token *token);
 char	**lexer(char *input);
+char	**ft_matdup(char **mat);
 int		parser(t_token **head, char *str);
 char	*find_path(char	*cmd, char **envp);
 void	check_pipe(char *cmd, t_token **head);
