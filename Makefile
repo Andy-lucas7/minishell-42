@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/02/03 19:26:10 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/02/05 19:13:10 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,28 @@ MAKEFLAGS   += --silent
 
 # Cabeçalhos
 HEADERS     := -I ./includes
-HEADER_FILE := includes/minishell.h includes/token.h includes/structs.h
+HEADER_FILE := includes/minishell.h includes/defines.h includes/functions.c includes/structs.h
 
 # Caminho para a libft
 LIBFT_PATH  := ./lib/libft
 LIBFT       := $(addprefix $(LIBFT_PATH)/, libft.a)
 
-# Fontes
-CFNCTS      := main/minishell.c utils/free_utils.c token/token.c executor/exec.c
+# Fonte
+CFNCTS      := main/minishell.c \
+				executor/executor.c \
+				executor/exec_utils.c \
+				executor/child.c \
+				executor/expander.c \
+				executor/expander_utils.c \
+				parser/parser.c \
+				parser/parser_utils.c \
+				path/path.c \
+				redirect/redirect.c \
+				redirect/redirect_utils.c \
+				syntax/syntax_checker.c \
+				syntax/lexer.c \
+				utils/utils.c \
+				utils/free_utils.c
 
 SRCS_PATH   := src
 OBJ_PATH    := objects
