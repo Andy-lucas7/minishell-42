@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 20:02:38 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/06 16:04:30 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:11:26 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ static void	update_env(char *env, int pos, char **envp)
 	if (!envp[pos])
 	{
 		temp = ft_calloc(pos + 2, sizeof(char *));
-		temp[pos] = ft_strdup(envp);
+		temp[pos] = ft_strdup(env);
 		while (pos--)
 			temp[pos] = ft_strdup(envp[pos]);
-		*envp = free_mat(*envp);
-		*envp = temp;
+		envp = free_mat(envp);
+		envp = temp;
 	}
 	else
 	{

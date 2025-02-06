@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:25:38 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/04 17:51:12 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:14:42 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	exec_on_parent(t_mini *ms, int n_pros, char **cmd, int **fd)
 		return (-1);
 	if (!ft_strncmp(*cmd, "exit", 4))
 		fd = (int **)free_mat((char **) fd);
-	if (!execbi(ms, cmd, &ms->envp, ms->prompt))
+	if (!builtins(ms, &ms->envp, cmd))
 		return (-1);
 	return (n_pros);
 }
