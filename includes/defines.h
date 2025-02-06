@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:27:48 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/06 16:29:34 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:41:42 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # endif
 
 # ifndef EXIT_MSG
-#  define EXIT_MSG "\033[1;32mSHELL\033[1;37min matador de porco diz: Até logo, \
-	humano.\033[0m"
+#  define EXIT_MSG "\n\033[1;37mSHELLin matador de porco diz: Até logo, \
+humano.\033[0m"
 # endif
 
 # ifndef PROMPT_MSG
@@ -30,14 +30,13 @@
 #  define INVALID_USAGE "invalid usage"
 # endif
 
-# ifndef SIZE
+# ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
 # endif
 
 # ifndef SEP
 #  define SEP -1
 # endif
-
 
 enum e_type{
 	PIPE = 10,

@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:04:37 by rapdos-s          #+#    #+#             */
-/*   Updated: 2025/02/03 12:40:24 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:50:37 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_exit(t_mini *ms, char **cmd)
 	if (!cmd[2] && is_valid_number (cmd[1]))
 	{
 		code = ft_atoi (cmd[1]);
-		//cmd = free_mat(cmd);
+		cmd = free_mat(cmd);
 		exit_handler (ms, "exited with error number", code);
 	}
 	exit_handler (ms, "-" PROMPT_MSG ": exit: " INVALID_USAGE, 42);

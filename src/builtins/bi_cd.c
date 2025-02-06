@@ -6,7 +6,7 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/06 17:52:39 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:56:34 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	change_dir(t_mini *sh, char *path, char ***envp)
 
 char	*default_path(char **envp)
 {
+	int	count;
 	char	*path;
 
 	while (envp && ft_strncmp(*envp, "HOME=", 5))
