@@ -6,28 +6,28 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 20:02:38 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/05 21:01:15 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/06 14:55:11 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	get_var_pos(char *var, char **envp)
+static int	env_pos(char *env, char **envp)
 {
-	char	*var_temp;
-	int		var_len;
-	int		var_pos;
+	char	*temp;
+	int		count;
+	int		aux;
 
-	var_len = ft_strchr (var, '=') - var;
-	var_pos = 0;
-	var_temp = ft_calloc (var_len + 2, sizeof (char));
-	ft_strlcpy (var_temp, var, var_len + 2);
-	var_temp[var_len] = '=';
-	var_temp[var_len + 1] = '\0';
-	while (envp[var_pos] && ft_strncmp (envp[var_pos], var_temp, var_len + 1))
-		var_pos++;
-	var_temp = free_ptr (var_temp);
-	return (var_pos);
+	count = ft_strchr(env, '=') - env;
+	aux = 0;
+	temp = ft_calloc(count + 2, sizeof(char));
+	ft_strlcpy(temp, env, count + 2);
+	temp[count] = '=';
+	temp[count + 1] = '\0';
+	while (envp[aux] && ft_strncmp(envp[aux], temp, count + 1))
+		aux++;
+	temp = free_ptr(temp);
+	return (aux);
 }
 
 static void	update_var(char *var, int var_pos, char ***envp)
