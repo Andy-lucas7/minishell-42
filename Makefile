@@ -48,6 +48,7 @@ CFNCTS      :=  main/minishell.c \
 				builtins/bi_env.c \
 				builtins/bi_pwd.c \
 				builtins/bi_unset.c \
+				builtins/bi_export.c \
 				builtins/builtins.c
 
 SRCS_PATH   := src

@@ -39,6 +39,8 @@ int		builtins(t_mini *sh, char ***envp, char **args);
 void	bi_unset(t_mini *sh, char **args, char ***envp);
 void	bi_pwd(t_mini *ms, char **args, char **envp);
 void	bi_env(t_mini *ms, char **args, char ***envp);
+void	bi_cd(t_mini *sh, char **args, char ***envp);
+void	bi_export(t_mini *sh, char **args, char ***envp);
 void	bi_echo(t_mini *sh, char **args);
 
 #endif

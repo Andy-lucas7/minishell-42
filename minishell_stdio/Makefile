@@ -23,6 +23,7 @@ SRC			= main.c utils.c free.c \
 			  path.c \
 			  redirect.c redirect_utils.c \
 			  builtins.c echo.c cd.c pwd.c export.c unset.c env.c exit.c
+
 OBJ_DIR		= objects/
 OBJ			= ${addprefix ${OBJ_DIR}, ${SRC:%.c=%.o}}
 VPATH		= sources sources/builtin

@@ -114,7 +114,7 @@ void	child(t_mini *ms, char **cmd, int **fd, int i)
 	if (fd[i] && !out)
 		dup2(fd[i][1], 1);
 	close_fds(fd);
-	if (!execbi(ms, cmd, &ms->envp, ms->prompt))
+	if (!builtins(ms, &ms->envp, cmd))
 	{
 		run_scmd(cmd, ms -> envp);
 		exit_child(ms, cmd, fd, 127);
