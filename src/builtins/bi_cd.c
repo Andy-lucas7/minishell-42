@@ -6,7 +6,7 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/06 15:54:58 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:01:53 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	put_dir(t_mini *sh, char *path, char ***envp)
 
 	temp = NULL;
 	env = ft_calloc(2, sizeof(char *));
-	temp = getcwd(temp, SIZE);
+	temp = getcwd(temp, BUFFER_SIZE);
 	if (chdir(path))
 	{
 		perror("minishell: cd");
@@ -31,7 +31,7 @@ void	put_dir(t_mini *sh, char *path, char ***envp)
 		bi_export(sh, env, envp);
 		temp = free_ptr(temp);
 		env[0] = free_ptr(env[0]);
-		temp = getcwd(temp, SIZE);
+		temp = getcwd(temp, BUFFER_SIZE);
 		env[0] = ft_strjoin("PWD=", temp);
 		bi_export(sh, env, envp);
 		sh->error = 0;
