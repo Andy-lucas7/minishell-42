@@ -6,11 +6,11 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/04 20:01:29 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:28:05 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
 void	put_dir(t_mini *sh, char *path, char ***envp)
 {
