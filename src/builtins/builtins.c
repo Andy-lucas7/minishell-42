@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:16:29 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/03 17:43:35 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:53:12 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	builtins(t_mini *sh, char ***envp, char **args)
 		bi_unset(sh, args, envp);
 	else if (!ft_strncmp(*args, "export", 6))
 		bi_export(sh, args, envp);
-//	else if (!ft_strncmp(*args, "exit", 4))
-//		return (bi_exit(sh, args));
+	else if (!ft_strncmp(*args, "exit", 4))
+		bi_exit(sh, args);
 	else
 		return (0);
 	return (1);

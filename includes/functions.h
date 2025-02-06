@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:34:59 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/06 16:17:53 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:52:16 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	bi_pwd(t_mini *ms, char **args, char **envp);
 void	bi_env(t_mini *ms, char **args, char ***envp);
 void	bi_cd(t_mini *sh, char **args, char ***envp);
 void	bi_export(t_mini *sh, char **args, char ***envp);
+void	bi_exit(t_mini *sh, char **args);
 void	bi_echo(t_mini *sh, char **args);
 
 #endif

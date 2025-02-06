@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/02/06 14:21:02 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/02/06 17:53:50 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ CFNCTS      :=  main/minishell.c \
 				builtins/bi_pwd.c \
 				builtins/bi_unset.c \
 				builtins/bi_export.c \
+				builtins/bi_exit.c \
 				builtins/builtins.c
 
 SRCS_PATH   := src

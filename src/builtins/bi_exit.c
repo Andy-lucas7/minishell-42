@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:40:41 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/06 17:30:36 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:48:35 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ void	bi_exit(t_mini *sh, char **args)
 		num = ft_atoi(args[1]);
 		exit_handler(sh, "exited with error number", num);
 	}
-	exit_handler(sh, "-minishell: exit: invalid usage\n", 42);
+	exit_handler(sh, "-SHELL-E: exit: invalid usage\n", 42);
 	args = free_mat(args);
 }
