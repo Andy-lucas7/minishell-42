@@ -6,13 +6,13 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/06 16:28:52 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:30:31 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	put_dir(t_mini *sh, char *path, char ***envp)
+void	change_dir(t_mini *sh, char *path, char ***envp)
 {
 	char	**env;
 	char	*temp;
@@ -55,12 +55,12 @@ char	*default_path(char **envp)
 void	bi_cd(t_mini *sh, char **args, char ***envp)
 {
 	if (args[1] && !args[2])
-		put_dir(sh, args[1], envp);
+		change_dir(sh, args[1], envp);
 	else if (!args[1])
-		put_dir(sh, default_path(*envp), envp);
+		change_dir(sh, default_path(*envp), envp);
 	else
 	{
-		ft_putstr_fd("", 2);
+		ft_putstr_fd("-minishell: cd: invalid usage\n", 2);
 		sh->error = 42;
 	}
 }
