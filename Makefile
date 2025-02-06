@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/02/05 19:52:17 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/02/06 14:21:02 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ RED         := \033[1;31m
 WHITE       := \033[0;37m
 BLUE        := \033[1;36m
 BOLD        := \033[1;1m
+DEFAULT		:= \033[0;0m
 
 # Regra padrão
 all: $(OBJ_PATH) $(NAME)
@@ -88,7 +89,7 @@ $(LIBFT):
 $(OBJ_PATH)/%.o: $(SRCS_PATH)/%.c $(HEADER_FILE) | $(OBJ_PATH)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
-	@echo "$(GREEN)Compiled: $(WHITE)$(notdir $<) $(GREEN)✔$(WHITE)"
+	@echo "$(GREEN)Compiled: $(WHITE)$(notdir $<) $(GREEN)✔$(WHITE)$(DEFAULT)"
 
 # Criar o diretório objects
 $(OBJ_PATH):
@@ -98,7 +99,7 @@ $(OBJ_PATH):
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(OBJS) $(LIBFT) $(LFLAGS) $(HEADERS) -o $(NAME)
 	@echo "$(GREEN)-------------------------------------------"
-	@echo "$(WHITE)  ✅  The \033[1;32mSHELL\033[1;37m\002-E\033[0m$(WHITE) has been compiled! ✅ "
+	@echo "$(WHITE)  ✅  The \033[1;32mSHELL\033[1;37m\002-E\033[0m$(WHITE) has been compiled! ✅ $(DEFAULT)"
 	@echo "$(GREEN)-------------------------------------------"
 
 # Compilation.com com Valgrind
@@ -108,14 +109,14 @@ val: $(NAME)
 # Limpeza dos objetos
 clean:
 	@rm -rf $(OBJ_PATH)
-	@echo "$(WHITE)     The objects are cleaned now!"
+	@echo "$(WHITE)     The $(PURPLE)objects$(WHITE) are cleaned now!$(DEFAULT)"
 
 # Limpeza completa (objetos e binário)
 fclean: clean
-	@echo "$(WHITE)     Cleaning all objects and binaries..."
+	@echo "$(WHITE)     Cleaning all $(PURPLE)objects$(WHITE) and binaries..."
 	@rm -rf $(NAME)
 	@make fclean -C $(LIBFT_PATH)
-	@echo "$(WHITE)    Cleaning \033[1;32mSHELL\033[1;37m\002-E\033[0m $(WHITE)complete!"
+	@echo "$(WHITE)    Cleaning \033[1;32mSHELL\033[1;37m-E $(WHITE)complete!$(DEFAULT)"
 
 # Recompilar tudo
 re: fclean all

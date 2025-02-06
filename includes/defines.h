@@ -6,7 +6,7 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:27:48 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/06 16:01:39 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:29:34 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@
 #  define INVALID_USAGE "invalid usage"
 # endif
 
+# ifndef SIZE
+#  define BUFFER_SIZE 4096
+# endif
+
 # ifndef SEP
 #  define SEP -1
 # endif
 
-# ifndef SIZE
-#  define BUFFER_SIZE 4096
-# endif
 
 enum e_type{
 	PIPE = 10,

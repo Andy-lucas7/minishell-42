@@ -16,6 +16,7 @@ SRC = ft_isdigit.c \
 				 ft_strlen.c \
 				 ft_strlcpy.c \
 				 ft_strlcat.c \
+				 ft_strjoin.c \
 				 ft_toupper.c \
 				 ft_tolower.c \
 				 ft_strchr.c \

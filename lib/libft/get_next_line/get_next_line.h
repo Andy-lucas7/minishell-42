@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 03:57:15 by lserrao-          #+#    #+#             */
-/*   Updated: 2024/12/13 10:23:15 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:20:36 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ char	*ft_read_line(int fd, char *line);
 char	*ft_get_next_line(char *line);
 char	*new_line(char *line);
 char	*get_next_line(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif
