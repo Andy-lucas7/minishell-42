@@ -6,7 +6,7 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 20:02:38 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/06 14:55:11 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:59:16 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,6 @@ static int	env_pos(char *env, char **envp)
 	return (aux);
 }
 
-static void	update_var(char *var, int var_pos, char ***envp)
-{
-	char	**envp_temp;
-
-	if (!envp[0][var_pos])
-	{
-		envp_temp = ft_calloc (var_pos + 2, sizeof (char *));
-		envp_temp[var_pos] = ft_strdup (var);
-		while (var_pos--)
-			envp_temp[var_pos] = ft_strdup (envp[0][var_pos]);
-		*envp = free_mat (*envp);
-		*envp = envp_temp;
-	}
-	else
-	{
-		envp[0][var_pos] = free_ptr (envp[0][var_pos]);
-		envp[0][var_pos] = ft_strdup (var);
-	}
-}
-
 static void	update_env(char *env, int pos, char **envp)
 {
 	char	**temp;
@@ -57,6 +37,16 @@ static void	update_env(char *env, int pos, char **envp)
 	if (!envp[pos])
 	{
 		temp = ft_calloc(pos + 2, sizeof(char *));
+		temp[pos] = ft_strdup(envp);
+		while (pos--)
+			temp[pos] = ft_strdup(envp[pos]);
+		*envp = free_mat(*envp);
+		*envp = temp;
+	}
+	else
+	{
+		envp[pos] = free_ptr(envp[pos]);
+		envp[pos] = ft_strdup(env);
 	}
 }
 
