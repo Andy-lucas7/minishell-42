@@ -34,7 +34,7 @@ humano.\033[0m"
 #  define INVALID_USAGE "invalid usage"
 # endif
 
-# ifndef SIZE
+# ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
 # endif
 
