@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/05 21:06:09 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:00:28 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	put_dir(t_mini *sh, char *path, char ***envp)
 	temp = getcwd(temp, SIZE);
 	if (chdir(path))
 	{
-		perror("minishell: cd");
+		perror("SHELL-E: cd");
 		sh->error = 42;
 	}
 	else
