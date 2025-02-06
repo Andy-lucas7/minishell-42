@@ -33,8 +33,8 @@
 #  define SEP -1
 # endif
 
-# ifndef SIZE
-#  define SIZE 4096
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4096
 # endif
 
 enum e_type{

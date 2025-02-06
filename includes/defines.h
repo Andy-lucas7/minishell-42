@@ -34,6 +34,10 @@
 #  define SEP -1
 # endif
 
+# ifndef SIZE
+#  define SIZE 4096
+# endif
+
 enum e_type{
 	PIPE = 10,
 	EXECVE = 11,
