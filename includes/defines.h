@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:27:48 by lserrao-          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/02/06 17:24:37 by lserrao-         ###   ########.fr       */
+=======
+/*   Updated: 2025/02/06 16:29:34 by jreis-do         ###   ########.fr       */
+>>>>>>> a6c931f923888d2775b9060e1a53033aaf545944
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +35,7 @@ humano.\033[0m"
 # endif
 
 # ifndef SIZE
-#  define SIZE 4096
+#  define BUFFER_SIZE 4096
 # endif
 
 # ifndef SEP

@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/06 16:05:55 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:30:31 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	put_dir(t_mini *sh, char *path, char ***envp)
+void	change_dir(t_mini *sh, char *path, char ***envp)
 {
 	char	**env;
 	char	*temp;
 
 	temp = NULL;
 	env = ft_calloc(2, sizeof(char *));
-	temp = getcwd(temp, SIZE);
+	temp = getcwd(temp, BUFFER_SIZE);
 	if (chdir(path))
 	{
 		perror("SHELL-E: cd");
@@ -31,7 +31,7 @@ void	put_dir(t_mini *sh, char *path, char ***envp)
 		bi_export(sh, env, envp);
 		temp = free_ptr(temp);
 		env[0] = free_ptr(env[0]);
-		temp = getcwd(temp, SIZE);
+		temp = getcwd(temp, BUFFER_SIZE);
 		env[0] = ft_strjoin("PWD=", temp);
 		bi_export(sh, env, envp);
 		sh->error = 0;
@@ -55,12 +55,12 @@ char	*default_path(char **envp)
 void	bi_cd(t_mini *sh, char **args, char ***envp)
 {
 	if (args[1] && !args[2])
-		put_dir(sh, args[1], envp);
+		change_dir(sh, args[1], envp);
 	else if (!args[1])
-		put_dir(sh, default_path(*envp), envp);
+		change_dir(sh, default_path(*envp), envp);
 	else
 	{
-		ft_putstr_fd("", 2);
+		ft_putstr_fd("-minishell: cd: invalid usage\n", 2);
 		sh->error = 42;
 	}
 }
