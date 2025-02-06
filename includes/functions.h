@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:34:59 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/04 15:26:37 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/05 19:45:59 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*free_ptr(char *ptr);
 char	**free_mat(char **mat);
 t_token	*free_token(t_token *token);
 char	**lexer(char *input);
+char	**ft_matdup(char **mat);
 int		parser(t_token **head, char *str);
 char	*find_path(char	*cmd, char **envp);
 void	check_pipe(char *cmd, t_token **head);
@@ -34,12 +35,10 @@ void	child(t_mini *ms, char **cmd, int **fd, int i);
 char	**redirect(t_mini *ms, char **cmd, int *out, int *in);
 void	set_redirect(t_mini *ms, char **cmd, int *fd, char **ret);
 int		execbi(t_mini *ms, char **cmd, char ***envp, char *prompt);
-void	ft_echo(t_mini *ms, char **cmd);
-void	ft_cd(t_mini *ms, char **cmd, char ***envp);
-void	ft_pwd(t_mini *ms, char **cmd, char **envp);
-void	ft_export(t_mini *ms, char **cmd, char ***envp);
-void	ft_unset(t_mini *ms, char **cmd, char ***envp);
-void	ft_env(t_mini *ms, char **cmd, char ***envp);
-void	ft_exit(t_mini *ms, char **cmd);
+int		builtins(t_mini *sh, char ***envp, char **args);
+void	bi_unset(t_mini *sh, char **args, char ***envp);
+void	bi_pwd(t_mini *ms, char **args, char **envp);
+void	bi_env(t_mini *ms, char **args, char ***envp);
+void	bi_echo(t_mini *sh, char **args);
 
 #endif

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 09:43:20 by rabustam          #+#    #+#             */
-/*   Updated: 2025/02/05 17:54:28 by lserrao-         ###   ########.fr       */
+/*   Created: 2025/02/04 18:02:48 by lserrao-          #+#    #+#             */
+/*   Updated: 2025/02/05 18:01:31 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,6 @@ static char	*ft_strjoin_gnl(char *s1, char *s2)
 	return (str);
 }
 
-static char	*number_to_string(int n)
-{
-	char	*errnum;
-	int		i;
-	int		temp;
-
-	temp = n;
-	if (!temp)
-		return (ft_strdup("0"));
-	i = 0;
-	while (temp)
-	{
-		temp = temp / 10;
-		i++;
-	}
-	errnum = ft_calloc(i + 1, sizeof(char));
-	while (n)
-	{
-		errnum[i - 1] = (n % 10) + 48;
-		n = n / 10;
-		i--;
-	}
-	return (errnum);
-}
-
 static char	*exit_status(t_mini *ms, char *f, char *cmd)
 {
 	char	*ret;
@@ -75,19 +50,7 @@ static char	*exit_status(t_mini *ms, char *f, char *cmd)
 	if (cmd && cmd[0])
 		ret = ft_strdup(++cmd);
 	f = free_ptr(f);
-	return (ft_strjoin_gnl(number_to_string(ms->error), ret));
-}
-
-int	find_equalsing(char *var)
-{
-	int	i;
-
-	i = 0;
-	if (!var)
-		return (0);
-	while (var[i] && var[i] != '=')
-		i++;
-	return (i);
+	return (ft_strjoin_gnl(ft_itoa(ms->error), ret));
 }
 
 char	*get_envp(t_mini *ms, char *cmd, char **envp)
@@ -106,7 +69,7 @@ char	*get_envp(t_mini *ms, char *cmd, char **envp)
 		return (exit_status(ms, ret, cmd));
 	while (*envp)
 	{
-		var_len = find_equalsing(*envp);
+		var_len = ft_findchr(*envp, '=');
 		if (!ft_strncmp(cmd, *envp, var_len) && \
 			!ft_strncmp(cmd, *envp, var_len))
 		{

@@ -1,49 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 10:49:21 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/05 19:20:36 by lserrao-         ###   ########.fr       */
+/*   Created: 2025/02/05 18:56:42 by lserrao-          #+#    #+#             */
+/*   Updated: 2025/02/05 19:48:27 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*free_ptr(char *ptr)
+static void	init_fd(int *fd)
 {
-	free(ptr);
-	ptr = NULL;
-	return (NULL);
+	fd[0] = -1;
+	fd[1] = -1;
 }
 
-char	**free_mat(char **mat)
+char	**redirect(t_mini *ms, char **cmd, int *out, int *in)
 {
-	size_t	i;
+	int		fd[2];
+	char	**ret;
+	int		i;
 
+	init_fd(fd);
 	i = 0;
-	while (mat && mat[i])
-	{
-		mat[i] = free_ptr(mat[i]);
+	while (cmd[i])
 		i++;
-	}
-	free (mat);
-	mat = NULL;
-	return (NULL);
-}
-
-t_token	*free_token(t_token *token)
-{
-	t_token	*temp;
-
-	while (token)
+	ret = ft_calloc(i + 1, sizeof(char *));
+	set_redirect(ms, cmd, fd, ret);
+	if (fd[0] == -5 || fd[1] == -5)
+		return (free_mat(ret));
+	if (fd[0] != -1)
 	{
-		temp = token;
-		token -> cmd = free_ptr (token -> cmd);
-		token = token -> next;
-		free (temp);
+		dup2(fd[0], 0);
+		close(fd[0]);
+		*in = 1;
 	}
-	return (NULL);
+	if (fd[1] != -1)
+	{
+		dup2(fd[1], 1);
+		close(fd[1]);
+		*out = 1;
+	}
+	return (ret);
 }
