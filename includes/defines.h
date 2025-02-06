@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:27:48 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/06 16:00:38 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:24:37 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # endif
 
 # ifndef EXIT_MSG
-#  define EXIT_MSG "\033[1;32mSHELL\033[1;37min matador de porco diz: Até logo, \
-	humano.\033[0m"
+#  define EXIT_MSG "\n\033[1;37mSHELLin matador de porco diz: Até logo, \
+humano.\033[0m"
 # endif
 
 # ifndef PROMPT_MSG
@@ -37,7 +37,6 @@
 # ifndef SEP
 #  define SEP -1
 # endif
-
 
 enum e_type{
 	PIPE = 10,
