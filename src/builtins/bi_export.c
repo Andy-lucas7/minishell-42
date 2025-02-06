@@ -6,48 +6,28 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 20:02:38 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/06 14:56:38 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:04:30 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	env_pos(char *var, char **envp)
+static int	env_pos(char *env, char **envp)
 {
-	char	*var_temp;
-	int		var_len;
-	int		var_pos;
+	char	*temp;
+	int		count;
+	int		aux;
 
-	var_len = ft_strchr (var, '=') - var;
-	var_pos = 0;
-	var_temp = ft_calloc (var_len + 2, sizeof (char));
-	ft_strlcpy (var_temp, var, var_len + 2);
-	var_temp[var_len] = '=';
-	var_temp[var_len + 1] = '\0';
-	while (envp[var_pos] && ft_strncmp (envp[var_pos], var_temp, var_len + 1))
-		var_pos++;
-	var_temp = free_ptr (var_temp);
-	return (var_pos);
-}
-
-static void	update_var(char *var, int var_pos, char ***envp)
-{
-	char	**envp_temp;
-
-	if (!envp[0][var_pos])
-	{
-		envp_temp = ft_calloc (var_pos + 2, sizeof (char *));
-		envp_temp[var_pos] = ft_strdup (var);
-		while (var_pos--)
-			envp_temp[var_pos] = ft_strdup (envp[0][var_pos]);
-		*envp = free_mat (*envp);
-		*envp = envp_temp;
-	}
-	else
-	{
-		envp[0][var_pos] = free_ptr (envp[0][var_pos]);
-		envp[0][var_pos] = ft_strdup (var);
-	}
+	count = ft_strchr(env, '=') - env;
+	aux = 0;
+	temp = ft_calloc(count + 2, sizeof(char));
+	ft_strlcpy(temp, env, count + 2);
+	temp[count] = '=';
+	temp[count + 1] = '\0';
+	while (envp[aux] && ft_strncmp(envp[aux], temp, count + 1))
+		aux++;
+	temp = free_ptr(temp);
+	return (aux);
 }
 
 static void	update_env(char *env, int pos, char **envp)
@@ -57,6 +37,16 @@ static void	update_env(char *env, int pos, char **envp)
 	if (!envp[pos])
 	{
 		temp = ft_calloc(pos + 2, sizeof(char *));
+		temp[pos] = ft_strdup(envp);
+		while (pos--)
+			temp[pos] = ft_strdup(envp[pos]);
+		*envp = free_mat(*envp);
+		*envp = temp;
+	}
+	else
+	{
+		envp[pos] = free_ptr(envp[pos]);
+		envp[pos] = ft_strdup(env);
 	}
 }
 
