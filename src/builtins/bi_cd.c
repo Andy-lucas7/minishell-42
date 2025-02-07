@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/06 17:59:01 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:40:43 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	change_dir(t_mini *sh, char *path, char ***envp)
 	char	*temp;
 
 	temp = NULL;
-	env = ft_calloc(2, sizeof(char *));
+	env = ft_calloc(3, sizeof(char *));
 	env[0] = ft_strdup("export");
 	temp = getcwd(temp, BUFFER_SIZE);
 	if (chdir(path))
