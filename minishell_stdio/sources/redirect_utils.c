@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rabustam <rabustam@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 09:56:00 by rabustam          #+#    #+#             */
-/*   Updated: 2025/02/03 12:36:38 by lserrao-         ###   ########.fr       */
+/*   Updated: 2022/12/28 09:56:00 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,5 @@ void	set_redirect(t_mini *ms, char **cmd, int *fd, char **ret)
 		else
 			ret[j++] = ft_strdup(cmd[i++]);
 	}
-	if (cmd)
-	{
-		free_mat(cmd);
-		cmd = NULL;
-	}
+	cmd = free_mat(cmd);
 }

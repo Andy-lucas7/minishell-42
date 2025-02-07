@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:35:25 by rapdos-s          #+#    #+#             */
-/*   Updated: 2025/02/05 19:21:28 by lserrao-         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:35:25 by rapdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minishell.h"
 
 static void	ft_easter_egg(char **prompt, int set)
 {

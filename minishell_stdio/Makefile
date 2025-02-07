@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
+#    By: rabustam <rabustam@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/20 09:09:51 by rapdos-s          #+#    #+#              #
-#    Updated: 2025/02/03 11:56:25 by lserrao-         ###   ########.fr        #
+#    Updated: 2023/01/07 15:19:20 by rabustam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ SRC			= main.c utils.c free.c \
 			  path.c \
 			  redirect.c redirect_utils.c \
 			  builtins.c echo.c cd.c pwd.c export.c unset.c env.c exit.c
-
 OBJ_DIR		= objects/
 OBJ			= ${addprefix ${OBJ_DIR}, ${SRC:%.c=%.o}}
 VPATH		= sources sources/builtin
@@ -42,9 +41,6 @@ $(NAME): ${LIBFT} ${OBJ_DIR} ${OBJ}
 clean:
 	make clean -C ${LIBFT_DIR}
 	${RM} ${OBJ_DIR}
-
-val: $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --trace-children-skip='*/bin/*,*/sbin/*' --suppressions=readline.txt ./$(NAME)
 
 fclean: clean
 	make fclean -C ${LIBFT_DIR}
