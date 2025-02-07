@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:27:43 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/07 17:48:18 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:23:54 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exit_handler(t_mini *ms, const char *msg, const int code)
 	if (msg)
 		ft_putendl_fd((char *)msg, 2);
 	if (!code && !msg)
-		exit(code);
+		exit(EXIT_SUCCESS);
 	ms->input = free_ptr(ms->input);
 	ms->prompt = free_ptr(ms->prompt);
 	ms->token = free_token(ms->token);
