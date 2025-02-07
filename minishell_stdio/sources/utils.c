@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 09:32:59 by rapdos-s          #+#    #+#             */
-/*   Updated: 2025/02/07 17:51:25 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:35:17 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exit_handler(t_mini *ms, const char *msg, const int code)
 	if (msg)
 		ft_putendl_fd ((char *) msg, 2);
 	if (!code && !msg)
-		exit(EXIT_SUCCESS);
+		exit(code);
 	ms -> input = free_ptr (ms -> input);
 	ms -> prompt = free_ptr (ms -> prompt);
 	ms -> token = free_token (ms -> token);

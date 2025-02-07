@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:40:41 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/07 17:57:19 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:42:08 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	find_zero(char *args)
 	count = 0;
 	while (args[count])
 	{
-		if (args[count] != '0')
+		if (args[count] != '\0')
 			return (1);
 		count++;
 	}

@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:27:43 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/07 17:48:18 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:39:00 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	exit_handler(t_mini *ms, const char *msg, const int code)
 {
 	int	i;
+
 
 	if (code && code != 127)
 		ft_putstr_fd(ERROR_MSG, 2);
