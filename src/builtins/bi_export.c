@@ -6,7 +6,7 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 20:02:38 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/06 16:29:04 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/07 21:09:23 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ static int	env_pos(char *env, char **envp)
 	return (aux);
 }
 
-static void	update_env(char *env, int pos, char **envp)
+static void	update_env(char *env, int pos, char ***envp)
 {
 	char	**temp;
 
-	if (!envp[pos])
+	if (!envp[0][pos])
 	{
 		temp = ft_calloc(pos + 2, sizeof(char *));
 		temp[pos] = ft_strdup(env);
 		while (pos--)
-			temp[pos] = ft_strdup(envp[pos]);
-		envp = free_mat(envp);
-		envp = temp;
+			temp[pos] = ft_strdup(envp[0][pos]);
+		*envp = free_mat(*envp);
+		*envp = temp;
 	}
 	else
 	{
-		envp[pos] = free_ptr(envp[pos]);
-		envp[pos] = ft_strdup(env);
+		envp[0][pos] = free_ptr(envp[0][pos]);
+		envp[0][pos] = ft_strdup(env);
 	}
 }
 
@@ -81,13 +81,14 @@ void	bi_export(t_mini *sh, char **args, char ***envp)
 		if (validate_env(args[count]) && ft_strchr(args[count], '='))
 		{
 			aux = env_pos(args[count], *envp);
-			update_env(args[count], aux, *envp);
+			update_env(args[count], aux, envp);
 			sh->error = 0;
 		}
 		else if (!validate_env(args[count]))
 		{
-			ft_putstr_fd("export: not valid in this context: ", 2);
+			ft_putstr_fd("minishell: export: ", 2);
 			ft_putstr_fd(args[count], 2);
+			ft_putstr_fd(": not a valid identifier\n", 2);
 			sh->error = 42;
 		}
 		else
