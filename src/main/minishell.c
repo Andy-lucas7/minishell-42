@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:46:53 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/05 19:47:50 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:12:43 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static t_mini	ft_init(int argc, char **argv, char **envp)
 	ms.envp = ft_matdup(envp);
 	if (!envp)
 		exit_handler(&ms, "Can't allocate memory to environment variables", 1);
-	ms.prompt = ft_strdup("\001\033[1;32mSHELL\001\033[1;37m\002-E: \001\033[0m\002");
+	ms.prompt = ft_strdup("\001\033[1;32m\002SHELL\001\033[1;37m\002-E: \
+\001\033[0m\002");
 	if (!ms.prompt)
 		exit_handler(&ms, "Can't allocate memory to prompt name", 1);
 	return (ms);
