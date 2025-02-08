@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:40:41 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/07 20:20:02 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/07 21:15:54 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	valid_num(char *str)
 	count = 0;
 	while (str && str[count])
 	{
-		if (!(ft_isdigit(str[count]) || str[count] == '+'))
+		if (!(ft_isdigit(str[count]) || str[count] == '+' \
+			|| str[count] == '-'))
 			return (0);
 		count++;
 	}
@@ -60,5 +61,5 @@ void	bi_exit(t_mini *sh, char **args)
 		exit_handler(sh, "exited with error number", num);
 	}
 	args = free_mat(args);
-	exit_handler(sh, "-SHELL-E: exit: invalid usage\n", 42);
+	exit_handler(sh, "-SHELL-E: exit: invalid usage\n", 2);
 }

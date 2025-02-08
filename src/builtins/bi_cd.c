@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/02/07 22:23:17 by jreis-do         ###   ########.fr       */
+=======
+/*   Updated: 2025/02/07 22:19:15 by lserrao-         ###   ########.fr       */
+>>>>>>> 3eb48b482a91a8f79b237900767d1c0183655b05
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +59,7 @@ void	bi_cd(t_mini *sh, char **args, char ***envp)
 {
 	if (args[1] && !args[2])
 		change_dir(sh, args[1], envp);
-	else if (!args[1])
+	else if (!args[1] && !args[2])
 		change_dir(sh, default_path(*envp), envp);
 	else
 	{

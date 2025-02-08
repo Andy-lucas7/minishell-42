@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:34:59 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/06 18:19:58 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/07 20:33:34 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	close_fds(int **fd);
 void	child(t_mini *ms, char **cmd, int **fd, int i);
 char	**redirect(t_mini *ms, char **cmd, int *out, int *in);
 void	set_redirect(t_mini *ms, char **cmd, int *fd, char **ret);
-// int		execbi(t_mini *ms, char **cmd, char ***envp, char *prompt);
 int		builtins(t_mini *sh, char ***envp, char **args);
 void	bi_unset(t_mini *sh, char **args, char ***envp);
 void	bi_pwd(t_mini *ms, char **args, char **envp);
