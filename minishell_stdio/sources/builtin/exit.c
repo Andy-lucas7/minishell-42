@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rapdos-s <rapdos-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 11:04:37 by rapdos-s          #+#    #+#             */
-/*   Updated: 2023/01/04 11:04:37 by rapdos-s         ###   ########.fr       */
+/*   Updated: 2025/02/07 21:15:46 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_valid_number(char *str)
 	i = 0;
 	while (str && str[i])
 	{
-		if (!(ft_isdigit (str[i]) || str[i] == '+'))
+		if (!(ft_isdigit (str[i]) || str[i] == '+' || str[i] == '-'))
 			return (0);
 		i++;
 	}
