@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/07 21:31:29 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/07 22:19:15 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	bi_cd(t_mini *sh, char **args, char ***envp)
 {
 	if (args[1] && !args[2])
 		change_dir(sh, args[1], envp);
-	else if (!args[1])
+	else if (!args[1] && !args[2])
 		change_dir(sh, default_path(*envp), envp);
 	else
 	{

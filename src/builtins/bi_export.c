@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 20:02:38 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/07 21:09:23 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/07 22:03:28 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ static int	validate_env(char *env)
 	int	aux;
 
 	aux = 1;
-	if (!env || (env && env[0] == '=') || ft_isdigit(env[0]))
+	if (!env || (env && env[0] == '='))
+		aux = 0;
+	if (ft_isdigit(env[0]))
 		aux = 0;
 	count = 0;
 	while (env[count] && env[count] != '=')
