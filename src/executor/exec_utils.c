@@ -6,24 +6,11 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:51:55 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/04 17:58:52 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:07:19 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	close_fds(int **fd)
-{
-	int	i;
-
-	i = 0;
-	while (fd[i])
-	{
-		close(fd[i][0]);
-		close(fd[i][1]);
-		i++;
-	}
-}
 
 char	**token_to_mat(t_token *token)
 {
@@ -50,4 +37,17 @@ char	**token_to_mat(t_token *token)
 	}
 	ret[j] = NULL;
 	return (ret);
+}
+
+void	close_fds(int **fd)
+{
+	int	i;
+
+	i = 0;
+	while (fd[i])
+	{
+		close(fd[i][0]);
+		close(fd[i][1]);
+		i++;
+	}
 }

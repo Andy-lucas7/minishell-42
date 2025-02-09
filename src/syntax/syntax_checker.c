@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:04:22 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/05 18:32:15 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/08 21:18:56 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	syntax_checker(t_mini *ms)
 		}
 		else if (ft_strchr(temp->cmd, '\\'))
 		{
-			printf("SHELL-E: syntax error, token \\ is not accepted\n");
+			printf("SHELL-E: syntax error, token `\\' is not accepted\n");
 			ms->error = 2;
 			return (2);
 		}
