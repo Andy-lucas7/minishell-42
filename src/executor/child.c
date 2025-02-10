@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:51:54 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/08 20:40:54 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:23:59 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@ static void	exit_child(t_mini *ms, char **cmd, int **fd, int code)
 	}
 	rl_clear_history();
 	unlink("__heredoc");
-	i = 0;
-	while (!close(i))
-		i++;
 	exit(ms->error);
 }
 

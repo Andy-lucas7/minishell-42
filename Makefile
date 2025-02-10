@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/02/08 21:01:35 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/02/10 11:34:47 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,7 @@ $(NAME): $(LIBFT) $(OBJS)
 
 # Compilation.com com Valgrind
 val: $(NAME)
-	valgrind --leak-check=full --show-leak-kinds=all -q --track-origins=yes --track-fds=yes --trace-children-skip='*/bin/*,*/sbin/*' --suppressions=.readline.supp ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --trace-children-skip='*/bin/*,*/sbin/*' --suppressions=.readline.supp ./$(NAME)
 
 # Limpeza dos objetos
 clean:

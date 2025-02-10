@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:16:44 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/05 19:27:17 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:36:50 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	bi_echo(t_mini *sh, char **args)
 	while (args && args[count])
 	{
 		printf("%s", args[count]);
-		if (args[++count])
+		if (args[++count] != NULL)
 			printf(" ");
 	}
 	if (nl)
