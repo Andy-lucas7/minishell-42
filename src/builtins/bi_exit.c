@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:40:41 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/07 21:15:54 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:27:06 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	bi_exit(t_mini *sh, char **args)
 		args = free_mat(args);
 		exit_handler(sh, NULL, 0);
 	}
+	if (args[2])
+		exit_handler(sh, "-SHELL-E: exit: excessive number of arguments\n", 1);
 	if (!args[2] && valid_num(args[1]))
 	{
 		num = ft_atoi(args[1]);
