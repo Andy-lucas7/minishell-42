@@ -6,28 +6,16 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:27:43 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/10 11:43:09 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:55:04 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <dirent.h>
-
-static void	check_open_fds(void)
-{
-	DIR *dir = opendir("/proc/self/fd/");
-	struct dirent *entry;
-	printf("Descritores abertos:\n");
-	while ((entry = readdir(dir)) != NULL)
-		printf("FD: %s\n", entry->d_name);
-	closedir(dir);
-}
 
 void	exit_handler(t_mini *ms, const char *msg, const int code)
 {
 	int	i;
 
-	check_open_fds();
 	if (code && code != 127)
 		ft_putstr_fd(ERROR_MSG, 2);
 	if (msg)
