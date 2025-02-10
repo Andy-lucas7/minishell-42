@@ -6,7 +6,7 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/07 22:25:15 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:43:47 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	change_dir(t_mini *sh, char *path, char ***envp)
 
 	temp = NULL;
 	env = ft_calloc(3, sizeof(char *));
-	env[0] = ft_strdup("export");
+	env[0] = ft_strdup("expt");
 	temp = getcwd(temp, BUFFER_SIZE);
 	if (chdir(path))
 	{

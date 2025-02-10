@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 13:37:46 by lserrao-          #+#    #+#             */
-/*   Updated: 2024/10/31 12:57:24 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:46:51 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
-
-	i = 0;
-	if (s == NULL)
-		return ;
-	while (s[i] != '\0')
-	{
-		ft_putchar_fd (s[i], fd);
-		i++;
-	}
+	while (s && *s)
+		ft_putchar_fd (*s++, fd);
 }
