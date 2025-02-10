@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:51:55 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/08 21:07:19 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:24:48 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,14 @@ void	close_fds(int **fd)
 	int	i;
 
 	i = 0;
+	if (!fd)
+		return ;
 	while (fd[i])
 	{
-		close(fd[i][0]);
-		close(fd[i][1]);
+		if (fd[i][0] > 2)
+			close(fd[i][0]);
+		if (fd[i][1] > 2)
+			close(fd[i][1]);
 		i++;
 	}
 }
