@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:25:38 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/10 12:13:50 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:24:45 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,41 +39,24 @@ static t_executor	init_executor(t_mini *ms)
 	return (ex);
 }
 
-static int handle_directory(t_mini *ms, char **path)
+int	is_directory(char *cmd)
 {
-    DIR *dir;
+	struct stat		file_info;
 
-	if (!ms || !path || !*path)
-        return (1);
-    dir = opendir(*path);
-    if (!dir)
-    {
-        if (errno == ENOENT)
-        {
-            ft_putstr_fd("minishell: no such file or directory\n", 2);
-            ms->error = 127;
-        }
-        else if (errno == EACCES)
-        {
-            ft_putstr_fd("minishell: permission denied\n", 2);
-            ms->error = 126;
-        }
-        return (1);
-    }
-    closedir(dir);
-    bi_cd(ms, change_matriz(path, "cd"), &ms->envp);
-    ms->error = 0;
-    return (0);
+	if (stat(cmd, &file_info) != 0)
+		return (-1);
+	return (S_ISDIR(file_info.st_mode));
 }
 
 static int	exec_on_parent(t_mini *ms, int n_pros, char **cmd, int **fd)
 {
-    if (cmd && *cmd && (*cmd)[0] == '.')
-    {
-        if (handle_directory(ms, cmd) == 0)
-            return (n_pros);
-		return (-1);
-    }
+	if (*cmd && !ft_strncmp(cmd[0], "./", 2) && is_directory(cmd[0]) == 1)
+	{
+		ft_putstr_fd(cmd[0], 2);
+		ft_putstr_fd(": Is a directory\n", 2);
+		ms->error = 126;
+		return (0);
+	}
 	if (n_pros > 1)
 		return (-1);
 	if (!ft_strncmp(*cmd, "echo", 4))
@@ -117,6 +100,8 @@ void	executor(t_mini *ms)
 	i = exec_on_parent(ms, ex.n_pros, ex.cmd, ex.fd);
 	if (i > 0)
 		ex.cmd = free_mat(ex.cmd);
+	if (i == 0)
+		return ;
 	exec_on_child(ms, &ex, i);
 	close_fds(ex.fd);
 	j = -1;

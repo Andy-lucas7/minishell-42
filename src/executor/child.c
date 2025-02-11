@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:51:54 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/10 17:05:09 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:16:28 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	run_scmd(char **cmd, char **envp)
 	path = find_path(cmd[0], envp);
 	if (!path)
 	{
-		error = ft_strjoin(PROMPT_MSG": ", cmd[0]);
+		error = ft_strjoin(PROMPT_MSG, cmd[0]);
 		ft_putstr_fd(error, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
 		error = free_ptr (error);
@@ -61,7 +61,6 @@ static void	exit_child(t_mini *ms, char **cmd, int **fd, int code)
 
 static void	file_error_message(t_mini *ms, char *cmd)
 {
-	ft_putstr_fd(PROMPT_MSG": ", 2);
 	ft_putstr_fd(cmd, 2);
 	ms->error = 1;
 }
@@ -103,8 +102,8 @@ void	child(t_mini *ms, char **cmd, int **fd, int i)
 	cmd = redirect(ms, cmd, &out, &in);
 	if (!cmd || *cmd == NULL)
 	{
-		free_mat(cmd);
 		handle_invalid_file(ms);
+		free_mat(cmd);
 	}
 	if (i && !in)
 		dup2(fd[i - 1][0], 0);
