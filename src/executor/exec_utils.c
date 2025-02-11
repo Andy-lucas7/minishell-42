@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:51:55 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/11 11:11:32 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:19:54 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,19 @@ void	close_fds(int **fd)
 		i++;
 	}
 }
+char    **change_matriz(char **mat, char *str)
+{
+    char    **new_mat;
 
+    new_mat = ft_calloc(3, sizeof(char *));
+    if (!new_mat)
+        return (NULL);
+    new_mat[0] = ft_strdup(str);
+    if (mat && mat[0])
+        new_mat[1] = ft_strdup(mat[0]);
+    new_mat[2] = NULL;
+    return (new_mat);
+}
 char	**change_matriz(char **mat, char *str)
 {
 	char	**new_mat;

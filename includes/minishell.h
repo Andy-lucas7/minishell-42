@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:27:03 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/11 11:17:00 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:20:52 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "functions.h"
 # include <errno.h>
 # include <fcntl.h>
+# include <errno.h>
 # include <dirent.h>
 # include <readline/readline.h>
 # include <readline/history.h>
