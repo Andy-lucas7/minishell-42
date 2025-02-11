@@ -18,8 +18,6 @@
 // 	char	**paths;
 // 	char	*full_cmd;
 // 	int		i = 0;
-..
-
 // 	if (!path)
 // 		return (0);
 // 	paths = ft_split(path, ':');

@@ -32,6 +32,7 @@ char	*get_envp(t_mini *ms, char *cmd, char **envp);
 void	executor(t_mini *ms);
 char	**token_to_mat(t_token *token);
 void	close_fds(int **fd);
+char	**change_matriz(char **mat, char *str);
 void	child(t_mini *ms, char **cmd, int **fd, int i);
 char	**redirect(t_mini *ms, char **cmd, int *out, int *in);
 void	set_redirect(t_mini *ms, char **cmd, int *fd, char **ret);

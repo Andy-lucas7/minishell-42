@@ -18,6 +18,8 @@
 # include "defines.h"
 # include "functions.h"
 # include <fcntl.h>
+# include <errno.h>
+# include <dirent.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdio.h>
