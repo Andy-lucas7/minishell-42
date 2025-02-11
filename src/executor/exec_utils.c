@@ -62,6 +62,5 @@ char    **change_matriz(char **mat, char *str)
     if (mat && mat[0])
         new_mat[1] = ft_strdup(mat[0]);
     new_mat[2] = NULL;
-    free_mat(mat);
     return (new_mat);
 }
