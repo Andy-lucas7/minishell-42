@@ -6,7 +6,7 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:16:35 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/10 18:03:11 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:13:46 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,13 @@ void	bi_pwd(t_mini *ms, char **args, char **envp)
 {
 	int	count;
 
-	if (!args[1])
+	if (args[0])
 	{
 		count = 0;
 		while (envp && ft_strncmp(envp[count], "PWD=", 4))
 			count++;
 		if (envp && envp[count])
 			printf("%s\n", envp[count] + 4);
-	}
-	else if (args[1])
-	{
-		ft_putstr_fd("pwd: too many arguments\n", 2);
-		ms->error = 1;
 	}
 	else
 	{
