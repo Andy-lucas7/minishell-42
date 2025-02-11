@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:46:53 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/10 15:00:43 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/10 20:59:46 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,3 +87,5 @@ int	main(int argc, char **argv, char **envp)
 	}
 	return (0);
 }
+
+// pegar o args[0], usar o "ft_tolower()" e verificar se é um comando como envp com execve, ai pula para args[1] e faz execução normal!

@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:34:59 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/07 20:33:34 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/10 21:24:00 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*free_ptr(char *ptr);
 char	**free_mat(char **mat);
 t_token	*free_token(t_token *token);
 char	**lexer(char *input);
+int	    is_executable(char *cmd);
 char	**ft_matdup(char **mat);
 int		parser(t_token **head, char *str);
 char	*find_path(char	*cmd, char **envp);

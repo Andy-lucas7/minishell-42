@@ -6,11 +6,40 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:02:51 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/05 17:46:18 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/10 22:10:20 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// static int	is_executable(char *cmd)
+// {
+// 	char	*path = getenv("PATH");
+// 	char	**paths;
+// 	char	*full_cmd;
+// 	int		i = 0;
+..
+
+// 	if (!path)
+// 		return (0);
+// 	paths = ft_split(path, ':');
+// 	while (paths[i])
+// 	{
+// 		full_cmd = ft_strjoin(paths[i], "/");
+// 		full_cmd = ft_strjoin_free(full_cmd, cmd, 1);
+
+// 		if (access(full_cmd, X_OK) == 0)
+// 		{
+// 			free(full_cmd);
+// 			free_mat(paths);
+// 			return (1);
+// 		}
+// 		free(full_cmd);
+// 		i++;
+// 	}
+// 	free_mat(paths);
+// 	return (0);
+// }
 
 static t_expand	init_expantion(t_mini *ms, char *cmd, char **envp, t_expand exp)
 {
