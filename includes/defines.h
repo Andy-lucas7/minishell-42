@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:27:48 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/06 17:41:42 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:47:22 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,41 @@
 #  define ERROR_MSG "\033[1;31mERROR\n\033[0m"
 # endif
 
+# ifndef EXIT_MSG2
+#  define EXIT_MSG2 "\n\033[1;37m\
+                       .,,uod8B8bou,,.                             \n\
+              ..,uod8BBBBBBBBBBBBBBBBRPFT?l!i:.                    \n\
+         ,=m8BBBBBBBBBBBBBBBRPFT?!||||||||||||||                   \n\
+         !...:!TVBBBRPFT||||||||||!!^^\"\"'   ||||                   \n\
+         !.......:!?|||||!!^^\"\"'            ||||                   \n\
+         !.........||||                     ||||                   \n\
+         !.........||||                     ||||                   \n\
+         !.........||||   \033[32mSHELL\033[37m-E: Bye!     ||||                   \n\
+         !.........||||                     ||||                   \n\
+         !.........||||                     ||||                   \n\
+         !.........||||                     ||||                   \n\
+         `.........||||                    ,||||                   \n\
+          .;.......||||               _.-!!|||||                   \n\
+   .,uodWBBBBb.....||||       _.-!!|||||||||!:'                    \n\
+!YBBBBBBBBBBBBBBb..!|||:..-!!|||||||!iof68BBBBBb....               \n\
+!..YBBBBBBBBBBBBBBb!!||||||||!iof68BBBBBBRPFT?!::   `.             \n\
+!....YBBBBBBBBBBBBBBbaaitf68BBBBBBRPFT?!:::::::::     `.           \n\
+!......YBBBBBBBBBBBBBBBBBBBRPFT?!::::::;:!^\"`;:::       `.         \n\
+!........YBBBBBBBBBBRPFT?!::::::::::^''...::::::;         iBBbo.   \n\
+`..........YBRPFT?!::::::::::::::::::::::::;iof68bo.      WBBBBbo. \n\
+  `..........:::::::::::::::::::::::;iof688888888888b.     `YBBBP^'\n\
+    `........::::::::::::::::;iof688888888888888888888b.     `     \n\
+      `......:::::::::;iof688888888888888888888888888888b.         \n\
+        `....:::;iof688888888888888888888888888888888899fT!        \n\
+          `..::!8888888888888888888888888888888899fT|!^\"'          \n\
+            `' !!988888888888888888888888899fT|!^\"'                \n\
+                `!!8888888888888888899fT|!^\"'                      \n\
+                  `!988888888899fT|!^\"'                            \n\
+                    `!9899fT|!^\"'\033[0m\n"
+# endif
+
 # ifndef EXIT_MSG
-#  define EXIT_MSG "\n\033[1;37mSHELLin matador de porco diz: Até logo, \
+#  define EXIT_MSG "\n\033[1;32mSHELL\033\033[1;37min matador de porco diz: Até logo, \
 humano.\033[0m"
 # endif
 
