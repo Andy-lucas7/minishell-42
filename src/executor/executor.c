@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:25:38 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/12 17:53:10 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:21:00 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	is_directory(t_mini *ms, char *cmd)
 		return (-1);
 	if (S_ISDIR(file_info.st_mode) == 1)
 	{
+		ft_putstr_fd(PROMPT_MSG, 2);
 		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd(": this a directory\n", 2);
 		ms->error = 126;
