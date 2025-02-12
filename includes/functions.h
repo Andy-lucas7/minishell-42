@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:34:59 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/11 15:42:13 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:39:58 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*free_ptr(char *ptr);
 char	**free_mat(char **mat);
 t_token	*free_token(t_token *token);
 char	**lexer(char *input);
-int		is_directory(char *cmd);
+int		is_directory(t_mini *ms, char *cmd);
 char	**ft_matdup(char **mat);
 int		parser(t_token **head, char *str);
 char	*find_path(char	*cmd, char **envp);
@@ -32,8 +32,6 @@ char	*get_envp(t_mini *ms, char *cmd, char **envp);
 void	executor(t_mini *ms);
 char	**token_to_mat(t_token *token);
 void	close_fds(int **fd);
-int	is_envar(t_mini *ms, char *cmd, char **envp);
-char	**change_matriz(char **mat, char *str);
 void	child(t_mini *ms, char **cmd, int **fd, int i);
 char	**redirect(t_mini *ms, char **cmd, int *out, int *in);
 void	set_redirect(t_mini *ms, char **cmd, int *fd, char **ret);
