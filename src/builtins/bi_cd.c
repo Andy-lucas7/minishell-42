@@ -6,7 +6,7 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/12 19:50:10 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/12 19:57:49 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,38 +51,10 @@ static void	change_dir(t_mini *sh, char *path, char ***envp)
 	env = free_mat(env);
 }
 
-static void change_dir_tild(t_mini *sh, char *path, char ***envp)
-{
-    char *full_path;
-    char *home_path;
-
-    home_path = default_path(*envp);
-    if (!home_path)
-    {
-        ft_putstr_fd("SHELL-E: cd: HOME not set\n", 2);
-        sh->error = 1;
-        return;
-    }
-    path++;
-    full_path = ft_strjoin(home_path, path);
-    if (!full_path)
-    {
-        sh->error = 1;
-        return;
-    }
-    change_dir(sh, full_path, envp);    
-    full_path = free_ptr(full_path);
-}
-
 void	bi_cd(t_mini *sh, char **args, char ***envp)
 {
 	if (args[1] && !args[2])
-	{
-		if (!ft_strncmp(args[1], "~/", 2))
-				change_dir_tild(sh, args[1], envp);
-		else
-			change_dir(sh, args[1], envp);
-	}
+		change_dir(sh, args[1], envp);
 	else if (!args[1])
 		change_dir(sh, default_path(*envp), envp);
 	else
