@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:25:38 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/12 17:21:57 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:53:10 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	is_directory(t_mini *ms, char *cmd)
 
 static int	exec_on_parent(t_mini *ms, int n_pros, char **cmd, int **fd)
 {
-	if (*cmd && !ft_strncmp(cmd[0], "./", 2) && is_directory(ms, cmd[0]) == 1)
+	if (!ft_strncmp(cmd[0], "./", 2) && is_directory(ms, cmd[0]) == 1)
 		return (0);	
 	if (n_pros > 1)
 		return (-1);
@@ -98,6 +98,8 @@ void	executor(t_mini *ms)
 	int			j;
 	t_executor	ex;
 
+	if (!ms->token || !ms->token->cmd || !*ms->token->cmd)
+		return ;
 	ex = init_executor(ms);
 	i = exec_on_parent(ms, ex.n_pros, ex.cmd, ex.fd);
 	if (i > 0)
