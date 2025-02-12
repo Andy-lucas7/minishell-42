@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:25:38 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/12 17:00:05 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:21:57 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static t_executor	init_executor(t_mini *ms)
 	return (ex);
 }
 
-int	is_directory(char *cmd)
+int	is_directory(t_mini *ms, char *cmd)
 {
 	struct stat		file_info;
 
@@ -47,7 +47,7 @@ int	is_directory(char *cmd)
 		return (-1);
 	if (S_ISDIR(file_info.st_mode) == 1)
 	{
-		ft_putstr_fd(cmd[0], 2);
+		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd(": this a directory\n", 2);
 		ms->error = 126;
 		return (1);
@@ -57,7 +57,7 @@ int	is_directory(char *cmd)
 
 static int	exec_on_parent(t_mini *ms, int n_pros, char **cmd, int **fd)
 {
-	if (*cmd && !ft_strncmp(cmd[0], "./", 2) && is_directory(cmd[0]) == 1)
+	if (*cmd && !ft_strncmp(cmd[0], "./", 2) && is_directory(ms, cmd[0]) == 1)
 		return (0);	
 	if (n_pros > 1)
 		return (-1);
