@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/02/10 11:34:47 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/02/13 15:40:02 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,11 +71,28 @@ DEFAULT		:= \033[0;0m
 # Regra padrão
 all: $(OBJ_PATH) $(NAME)
 
-debug:
-	@echo "SRCS = $(SRCS)"
-	@echo "OBJS = $(OBJS)"
-	@echo "CFNCTS = $(CFNCTS)"
-	@echo "HEADER_FILE = $(HEADER_FILE)"
+# Conta total de arquivos
+TOTAL_FILES := $(words $(SRCS))
+COMPILED_FILES := 0
+
+# Função para atualizar a barra de progresso
+define update_progress
+	@$(eval COMPILED_FILES=$(shell echo $$(($(COMPILED_FILES) + 1))))
+	@$(eval PERCENTAGE=$(shell echo $$(($(COMPILED_FILES) * 100 / $(TOTAL_FILES)))))
+	@printf "\r\033[0;37mCompiling: ["
+	@if [ $(PERCENTAGE) = 100 ]; then \
+		for i in `seq 1 $(shell echo $$(($(PERCENTAGE) / 5)))`; do printf "$(GREEN)█$(WHITE)"; done; \
+	else \
+		for i in `seq 1 $(shell echo $$(($(PERCENTAGE) / 5)))`; do printf "$(DEFAULT)█$(WHITE)"; done; \
+	fi
+	@for i in `seq 1 $(shell echo $$((20 - $(PERCENTAGE) / 5)))`; do printf " "; done
+	@if [ $(PERCENTAGE) = 100 ]; then \
+		printf "] $(GREEN)%d%%$(DEFAULT)" $(PERCENTAGE); \
+	else \
+		printf "] %d%%" $(PERCENTAGE); \
+	fi
+	@if [ $(PERCENTAGE) = 100 ]; then printf "\n"; fi
+endef
 
 # Mostra dependencias dos Objetos
 depend:
@@ -90,7 +107,7 @@ $(LIBFT):
 $(OBJ_PATH)/%.o: $(SRCS_PATH)/%.c $(HEADER_FILE) | $(OBJ_PATH)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
-	@echo "$(GREEN)Compiled: $(WHITE)$(notdir $<) $(GREEN)✔$(WHITE)$(DEFAULT)"
+	$(call update_progress)
 
 # Criar o diretório objects
 $(OBJ_PATH):
@@ -99,6 +116,7 @@ $(OBJ_PATH):
 # Criar o binário final
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(OBJS) $(LIBFT) $(LFLAGS) $(HEADERS) -o $(NAME)
+	@clear
 	@echo "$(GREEN)-------------------------------------------"
 	@echo "$(WHITE)  ✅  The \033[1;32mSHELL\033[1;37m\002-E\033[0m$(WHITE) has been compiled! ✅ $(DEFAULT)"
 	@echo "$(GREEN)-------------------------------------------"
