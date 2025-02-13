@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:40:41 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/10 17:27:06 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:51:51 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	find_zero(char *args)
 	count = -1;
 	while (args[++count])
 	{
-		if (args[count] != '\0')
+		if (args[count] != '0')
 			return (1);
 	}
 	return (0);
