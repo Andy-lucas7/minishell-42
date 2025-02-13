@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 20:02:38 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/10 17:02:38 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/12 23:23:36 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	bi_export(t_mini *sh, char **args, char ***envp)
 		}
 		else if (!validate_env(args[count]))
 		{
-			ft_putstr_fd("minishell: export: ", 2);
+			ft_putstr_fd(PROMPT_MSG"export: ", 2);
 			ft_putstr_fd(args[count], 2);
 			ft_putstr_fd(": not a valid identifier\n", 2);
 			sh->error = 1;

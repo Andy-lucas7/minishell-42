@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:16:35 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/11 17:13:46 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/12 23:24:01 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	bi_pwd(t_mini *ms, char **args, char **envp)
 	}
 	else
 	{
-		ft_putstr_fd("-minishell: pwd: invalid usage\n", 2);
+		ft_putstr_fd(PROMPT_MSG"pwd: invalid usage\n", 2);
 		ms->error = 42;
 	}
 }
