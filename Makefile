@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/02/13 12:42:28 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/02/13 15:40:02 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ COMPILED_FILES := 0
 define update_progress
 	@$(eval COMPILED_FILES=$(shell echo $$(($(COMPILED_FILES) + 1))))
 	@$(eval PERCENTAGE=$(shell echo $$(($(COMPILED_FILES) * 100 / $(TOTAL_FILES)))))
-	@printf "\r\033[1;37mCompiling: ["
+	@printf "\r\033[0;37mCompiling: ["
 	@if [ $(PERCENTAGE) = 100 ]; then \
 		for i in `seq 1 $(shell echo $$(($(PERCENTAGE) / 5)))`; do printf "$(GREEN)█$(DEFAULT)"; done; \
 	else \
@@ -116,6 +116,7 @@ $(OBJ_PATH):
 # Criar o binário final
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(OBJS) $(LIBFT) $(LFLAGS) $(HEADERS) -o $(NAME)
+	@clear
 	@echo "$(GREEN)-------------------------------------------"
 	@echo "$(WHITE)  ✅  The \033[1;32mSHELL\033[1;37m\002-E\033[0m$(WHITE) has been compiled! ✅ $(DEFAULT)"
 	@echo "$(GREEN)-------------------------------------------"
