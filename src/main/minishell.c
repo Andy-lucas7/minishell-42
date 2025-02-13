@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:46:53 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/12 19:34:16 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/12 23:17:08 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	ft_sa_handler(int sig, siginfo_t *info, void *context)
 	if (sig == SIGINT && info->si_pid)
 	{
 		rl_on_new_line();
-		rl_replace_line("\n", 0);
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 }

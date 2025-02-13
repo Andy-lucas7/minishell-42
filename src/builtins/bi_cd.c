@@ -6,7 +6,7 @@
 /*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 19:21:45 by jreis-do          #+#    #+#             */
-/*   Updated: 2025/02/12 23:40:56 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/12 23:45:53 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	change_dir(t_mini *sh, char *path, char ***envp)
 	temp = getcwd(temp, BFF_SIZE);
 	if (chdir(path))
 	{
-		perror("SHELL-E: cd");
+		perror(PROMPT_MSG"cd");
 		sh->error = 1;
 	}
 	else
@@ -59,7 +59,7 @@ void	bi_cd(t_mini *sh, char **args, char ***envp)
 		change_dir(sh, default_path(*envp), envp);
 	else
 	{
-		ft_putstr_fd("-minishell: cd: invalid usage\n", 2);
+		ft_putstr_fd(PROMPT_MSG"cd: invalid usage\n", 2);
 		sh->error = 1;
 	}
 }
