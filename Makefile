@@ -81,9 +81,9 @@ define update_progress
 	@$(eval PERCENTAGE=$(shell echo $$(($(COMPILED_FILES) * 100 / $(TOTAL_FILES)))))
 	@printf "\r\033[1;37mCompiling: ["
 	@if [ $(PERCENTAGE) = 100 ]; then \
-		for i in `seq 1 $(shell echo $$(($(PERCENTAGE) / 5)))`; do printf "$(GREEN)█$(DEFAULT)"; done; \
+		for i in `seq 1 $(shell echo $$(($(PERCENTAGE) / 5)))`; do printf "$(GREEN)█$(WHITE)"; done; \
 	else \
-		for i in `seq 1 $(shell echo $$(($(PERCENTAGE) / 5)))`; do printf "█"; done; \
+		for i in `seq 1 $(shell echo $$(($(PERCENTAGE) / 5)))`; do printf "$(DEFAULT)█$(WHITE)"; done; \
 	fi
 	@for i in `seq 1 $(shell echo $$((20 - $(PERCENTAGE) / 5)))`; do printf " "; done
 	@if [ $(PERCENTAGE) = 100 ]; then \
