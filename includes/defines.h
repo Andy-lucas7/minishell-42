@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:27:48 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/12 19:47:22 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/12 23:38:34 by jreis-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ humano.\033[0m"
 #  define INVALID_USAGE "invalid usage"
 # endif
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4096
+# ifndef BFF_SIZE
+#  define BFF_SIZE 4096
 # endif
 
 # ifndef SEP
