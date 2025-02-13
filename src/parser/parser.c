@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:51:00 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/12 17:46:28 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:47:24 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	parser(t_token **head, char *str)
 	cmdlist = lexer(str);
 	if (!cmdlist)
 	{
-		ft_putstr_fd("-SHELL-E: parser: unclosed quotes\n", 2);
+		ft_putstr_fd(PROMPT_MSG"parser: unclosed quotes\n", 2);
 		cmdlist = free_mat(cmdlist);
 		return (1);
 	}

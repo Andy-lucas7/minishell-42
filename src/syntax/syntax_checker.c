@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 18:04:22 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/08 21:18:56 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:46:50 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	check_next(t_mini *ms, t_token *token, int type)
 {
 	if (type == PIPE && token->next && token->next->type == PIPE)
 	{
-		printf("SHELL-E: syntax error near unexpected token %s\n", \
+		printf(PROMPT_MSG"syntax error near unexpected token %s\n", \
 		token->next->cmd);
 		ms->error = 2;
 		return (2);
@@ -25,7 +25,7 @@ static int	check_next(t_mini *ms, t_token *token, int type)
 	(type == REDIRECT && (token->next->type == PIPE || \
 	token->next->type == REDIRECT || token->next->type == HEREDOC)))
 	{
-		printf("SHELL-E: syntax error near unexpected token %s\n", \
+		printf(PROMPT_MSG"syntax error near unexpected token %s\n", \
 		token->cmd);
 		ms->error = 2;
 		return (2);
@@ -52,7 +52,7 @@ int	syntax_checker(t_mini *ms)
 		}
 		else if (ft_strchr(temp->cmd, '\\'))
 		{
-			printf("SHELL-E: syntax error, token `\\' is not accepted\n");
+			printf(PROMPT_MSG"syntax error, token `\\' is not accepted\n");
 			ms->error = 2;
 			return (2);
 		}
