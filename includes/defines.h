@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jreis-do <jreis-do@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:27:48 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/12 23:45:41 by jreis-do         ###   ########.fr       */
+/*   Updated: 2025/02/14 11:27:16 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #  define ERROR_MSG "\033[1;31mERROR\n\033[0m"
 # endif
 
-# ifndef EXIT_MSG2
-#  define EXIT_MSG2 "\n\033[1;37m\
+# ifndef EXIT_MSG
+#  define EXIT_MSG "\n\033[1;37m\
                        .,,uod8B8bou,,.                             \n\
               ..,uod8BBBBBBBBBBBBBBBBRPFT?l!i:.                    \n\
          ,=m8BBBBBBBBBBBBBBBRPFT?!||||||||||||||                   \n\
@@ -48,11 +48,6 @@
                 `!!8888888888888888899fT|!^\"'                      \n\
                   `!988888888899fT|!^\"'                            \n\
                     `!9899fT|!^\"'\033[0m\n"
-# endif
-
-# ifndef EXIT_MSG
-#  define EXIT_MSG "\n\033[1;32mSHELL\033\033[1;37min matador de porco diz: Até logo, \
-humano.\033[0m"
 # endif
 
 # ifndef PROMPT_MSG

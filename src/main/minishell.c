@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 20:46:53 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/12 23:17:08 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/14 11:27:29 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*get_input(t_mini *ms, const char *prompt)
 	if (input && input[0])
 		add_history(input);
 	else if (!input)
-		exit_handler (ms, EXIT_MSG2, 0);
+		exit_handler (ms, EXIT_MSG, 0);
 	return (input);
 }
 

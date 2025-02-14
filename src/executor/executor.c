@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:25:38 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/12 19:21:00 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/13 21:21:48 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	is_directory(t_mini *ms, char *cmd)
 static int	exec_on_parent(t_mini *ms, int n_pros, char **cmd, int **fd)
 {
 	if (!ft_strncmp(cmd[0], "./", 2) && is_directory(ms, cmd[0]) == 1)
-		return (0);	
+		return (0);
 	if (n_pros > 1)
 		return (-1);
 	if (!ft_strncmp(*cmd, "echo", 4))

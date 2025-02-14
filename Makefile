@@ -6,7 +6,7 @@
 #    By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/17 16:25:03 by lserrao-          #+#    #+#              #
-#    Updated: 2025/02/13 15:40:02 by lserrao-         ###   ########.fr        #
+#    Updated: 2025/02/13 20:00:25 by lserrao-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,7 +119,7 @@ $(NAME): $(LIBFT) $(OBJS)
 	@clear
 	@echo "$(GREEN)-------------------------------------------"
 	@echo "$(WHITE)  ✅  The \033[1;32mSHELL\033[1;37m\002-E\033[0m$(WHITE) has been compiled! ✅ $(DEFAULT)"
-	@echo "$(GREEN)-------------------------------------------"
+	@echo "$(GREEN)-------------------------------------------$(WHITE)"
 
 # Compilation.com com Valgrind
 val: $(NAME)
