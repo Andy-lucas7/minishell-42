@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:18:42 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/14 20:47:00 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/14 21:08:40 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	check_pipe(char *cmd, t_token **head)
 		{
 			input = free_ptr(input);
 			return ;
+		}
+		if (!input)
+		{
+			ft_putendl_fd(PROMPT_MSG"unexpected end of file", 2);
+			printf("exit\n");
+			exit(2);
 		}
 		parser(head, input);
 		input = free_ptr(input);
