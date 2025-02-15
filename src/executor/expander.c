@@ -64,16 +64,25 @@ static char	*expand_quotes(char *cmd)
 	return (ft_mattstr_copy(ret));
 }
 
-static int	is_env_directory(t_mini *ms, char *cmd, char **envp)
+int	is_env_directory(t_mini *ms, char *cmd, char **envp)
 {
-	char	*ret;
+	char			*ret;
+	struct stat		file_info;
+	char			*temp;
 
-	ret = get_envp(ms, cmd, envp);
-	ft_putstr_fd(PROMPT_MSG, 2);
-	ft_putstr_fd(ret, 2);
-	ft_putstr_fd(": this a directory\n", 2);
-	ms->error = 126;
-	return (1);
+	temp = ft_strdup(cmd);
+	ret = get_envp(ms, temp, envp);
+	stat(ret, &file_info);
+	if (S_ISDIR(file_info.st_mode) == 1)
+	{
+		ft_putstr_fd(PROMPT_MSG, 2);
+		ft_putstr_fd(ret, 2);
+		ft_putstr_fd(": this a directory\n", 2);
+		ms->error = 126;
+		free(ret);
+		return (1);
+	}
+	return (0);
 }
 
 char	*expand(t_mini *ms, char *cmd, char **envp)
@@ -81,12 +90,6 @@ char	*expand(t_mini *ms, char *cmd, char **envp)
 	t_expand	exp;
 
 	ft_bzero(&exp, sizeof(t_expand));
-	if (!ft_strncmp(cmd, "$PWD", 4) || !ft_strncmp(cmd, "$HOME", 5) || \
-		!ft_strncmp(cmd, "$OLDPWD", 7))
-	{
-		if (is_env_directory(ms, cmd, envp) == 1)
-			return (NULL);
-	}
 	while (cmd[exp.i])
 		exp.ex_n += 1 * (cmd[exp.i++] == '$');
 	exp.ex = (exp.ex_n * 2) + 2;
@@ -110,6 +113,8 @@ void	expander(t_mini *ms, t_token **head, char **envp)
 	t_token	*token;
 
 	token = *head;
+	if (is_env_directory(ms, token->cmd, envp))
+		return ;
 	while (token)
 	{
 		if (ft_strchr(token->cmd, '$'))

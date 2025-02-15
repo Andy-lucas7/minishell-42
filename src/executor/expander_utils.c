@@ -59,7 +59,7 @@ char	*get_envp(t_mini *ms, char *cmd, char **envp)
 	int		len;
 	int		var_len;
 
-	ret = ft_strdup(cmd);
+	ret = cmd;
 	cmd++;
 	if (*cmd == '{')
 		len = ft_strlen(++cmd);

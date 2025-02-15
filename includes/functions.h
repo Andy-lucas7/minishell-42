@@ -21,6 +21,7 @@ char	**free_mat(char **mat);
 t_token	*free_token(t_token *token);
 char	**lexer(char *input);
 int		is_directory(t_mini *ms, char *cmd);
+int		is_env_directory(t_mini *ms, char *cmd, char **envp);
 char	**ft_matdup(char **mat);
 int		parser(t_token **head, char *str);
 char	*find_path(char	*cmd, char **envp);
