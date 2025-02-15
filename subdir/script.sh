@@ -1,1 +1,0 @@
--e #!/bin/bash echo "Executando de uma subpasta!"

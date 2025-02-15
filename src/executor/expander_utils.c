@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:02:48 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/11 15:44:02 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/14 22:15:01 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*get_envp(t_mini *ms, char *cmd, char **envp)
 	int		len;
 	int		var_len;
 
-	ret = cmd;
+	ret = ft_strdup(cmd);
 	cmd++;
 	if (*cmd == '{')
 		len = ft_strlen(++cmd);
@@ -70,8 +70,7 @@ char	*get_envp(t_mini *ms, char *cmd, char **envp)
 	while (*envp)
 	{
 		var_len = ft_findchr(*envp, '=');
-		if (!ft_strncmp(cmd, *envp, var_len) && \
-			!ft_strncmp(cmd, *envp, var_len))
+		if (!ft_strncmp(cmd, *envp, var_len))
 		{
 			ret = free_ptr(ret);
 			return (ft_strdup(*envp + len + 1));

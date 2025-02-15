@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:02:51 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/12 17:21:02 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/14 22:17:39 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,29 @@ static char	*expand_quotes(char *cmd)
 	return (ft_mattstr_copy(ret));
 }
 
+static int	is_env_directory(t_mini *ms, char *cmd, char **envp)
+{
+	char	*ret;
+
+	ret = get_envp(ms, cmd, envp);
+	ft_putstr_fd(PROMPT_MSG, 2);
+	ft_putstr_fd(ret, 2);
+	ft_putstr_fd(": this a directory\n", 2);
+	ms->error = 126;
+	return (1);
+}
+
 char	*expand(t_mini *ms, char *cmd, char **envp)
 {
 	t_expand	exp;
 
 	ft_bzero(&exp, sizeof(t_expand));
+	if (!ft_strncmp(cmd, "$PWD", 4) || !ft_strncmp(cmd, "$HOME", 5) || \
+		!ft_strncmp(cmd, "$OLDPWD", 7))
+	{
+		if (is_env_directory(ms, cmd, envp) == 1)
+			return (NULL);
+	}
 	while (cmd[exp.i])
 		exp.ex_n += 1 * (cmd[exp.i++] == '$');
 	exp.ex = (exp.ex_n * 2) + 2;
