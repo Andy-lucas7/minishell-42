@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 17:27:48 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/14 11:27:16 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/15 13:05:17 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@
 # endif
 
 # ifndef EXIT_MSG
-#  define EXIT_MSG "fatima bernardes"
-#endif
-
-# ifndef EXIT_MSG2
-#  define EXIT_MSG2 "\n\033[1;37m\
+#  define EXIT_MSG "\n\033[1;37m\
                        .,,uod8B8bou,,.                             \n\
               ..,uod8BBBBBBBBBBBBBBBBRPFT?l!i:.                    \n\
          ,=m8BBBBBBBBBBBBBBBRPFT?!||||||||||||||                   \n\
