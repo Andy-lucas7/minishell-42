@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:51:00 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/13 15:47:24 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/14 21:19:51 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char	**split_args(char *input)
 	return (ret);
 }
 
-static int	is_buildin(char *token)
+static int	is_builtin(char *token)
 {
 	char	**list;
 	int		i;
@@ -99,7 +99,7 @@ static void	define_type(t_token **head)
 			token->type = REDIRECT;
 		else if (!ft_strncmp(token->cmd, "<<", ft_strlen("<<")))
 			token->type = HEREDOC;
-		else if (is_buildin(token->cmd))
+		else if (is_builtin(token->cmd))
 			token->type = BUILDIN;
 		else if (!token->prev || token->prev->type == PIPE)
 			token->type = EXECVE;
