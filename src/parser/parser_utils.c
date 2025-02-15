@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:18:42 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/14 21:10:27 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/14 21:14:08 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_pipe(char *cmd, t_token **head)
 		if (!input)
 		{
 			ft_putendl_fd(PROMPT_MSG"syntax error: unexpected end of file", 2);
-			printf("exit\n");
+			ft_putendl_fd("exit\n", 2);
 			exit(2);
 		}
 		parser(head, input);
