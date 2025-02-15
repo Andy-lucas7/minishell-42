@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 18:18:42 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/14 21:14:08 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/15 12:13:04 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	check_pipe(char *cmd, t_token **head)
 	char				*input;
 
 	input = NULL;
-	if (!ft_strncmp(cmd, "|", 2) || cmd[1] == '\0')
+	if (!ft_strncmp(cmd, "|", 2))
 	{
 		input = readline("> ");
 		if (input && !input[0])

@@ -16,7 +16,7 @@ void	bi_pwd(t_mini *ms, char **args, char **envp)
 {
 	int	count;
 
-	if (!args[1])
+	if (args[0])
 	{
 		count = 0;
 		while (envp && ft_strncmp(envp[count], "PWD=", 4))

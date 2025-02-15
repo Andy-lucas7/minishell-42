@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:25:38 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/14 21:57:42 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/15 12:41:19 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,22 @@ int	is_directory(t_mini *ms, char *cmd)
 	if (stat(cmd, &file_info) != 0)
 		return (-1);
 	if (S_ISDIR(file_info.st_mode) == 1)
+	{
+		ft_putstr_fd(PROMPT_MSG, 2);
+		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(": this a directory\n", 2);
+		ms->error = 126;
 		return (1);
+	}
 	return (0);
 }
 
 static int	exec_on_parent(t_mini *ms, int n_pros, char **cmd, int **fd)
 {
-	if ((!ft_strncmp(cmd[0], "./", 2) || !ft_strncmp(cmd[0], "$", 1)) && is_directory(ms, cmd[0]) == 1)
+	if (is_env_directory(ms, cmd[0], ms->envp) == 1)
 	{
 		ft_putstr_fd(PROMPT_MSG, 2);
-		ft_putstr_fd(cmd[0], 2);
+		ft_putstr_fd(get_envp(ms, cmd[0], ms->envp), 2);
 		ft_putstr_fd(": this a directory\n", 2);
 		ms->error = 126;
 		return (0);

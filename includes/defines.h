@@ -18,7 +18,11 @@
 # endif
 
 # ifndef EXIT_MSG
-#  define EXIT_MSG "\n\033[1;37m\
+#  define EXIT_MSG "fatima bernardes"
+#endif
+
+# ifndef EXIT_MSG2
+#  define EXIT_MSG2 "\n\033[1;37m\
                        .,,uod8B8bou,,.                             \n\
               ..,uod8BBBBBBBBBBBBBBBBRPFT?l!i:.                    \n\
          ,=m8BBBBBBBBBBBBBBBRPFT?!||||||||||||||                   \n\

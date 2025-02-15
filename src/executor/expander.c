@@ -6,7 +6,7 @@
 /*   By: lserrao- <lserrao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 18:02:51 by lserrao-          #+#    #+#             */
-/*   Updated: 2025/02/14 22:17:39 by lserrao-         ###   ########.fr       */
+/*   Updated: 2025/02/15 12:14:09 by lserrao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,6 @@ int	is_env_directory(t_mini *ms, char *cmd, char **envp)
 	stat(ret, &file_info);
 	if (S_ISDIR(file_info.st_mode) == 1)
 	{
-		ft_putstr_fd(PROMPT_MSG, 2);
-		ft_putstr_fd(ret, 2);
-		ft_putstr_fd(": this a directory\n", 2);
-		ms->error = 126;
-		free(ret);
 		return (1);
 	}
 	return (0);
@@ -113,7 +108,7 @@ void	expander(t_mini *ms, t_token **head, char **envp)
 	t_token	*token;
 
 	token = *head;
-	if (is_env_directory(ms, token->cmd, envp))
+	if (is_env_directory(ms, token->cmd, envp) == 1)
 		return ;
 	while (token)
 	{
