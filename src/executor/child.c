@@ -28,6 +28,7 @@ static void	run_scmd(char **cmd, char **envp)
 		ft_putstr_fd(error, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
 		error = free_ptr (error);
+		cmd = free_mat(cmd);
 		return ;
 	}
 	execve(path, cmd, envp);
@@ -104,16 +105,13 @@ void	child(t_mini *ms, char **cmd, int **fd, int i)
 	{
 		handle_invalid_file(ms);
 		free_mat(cmd);
+		exit_child(ms, NULL, fd, ms->error);
 	}
 	if (i && !in)
 		dup2(fd[i - 1][0], 0);
 	if (fd[i] && !out)
 		dup2(fd[i][1], 1);
 	close_fds(fd);
-	if (!builtins(ms, &ms->envp, cmd))
-	{
-		run_scmd(cmd, ms -> envp);
-		exit_child(ms, cmd, fd, 127);
-	}
+	run_scmd(cmd, ms->envp);
 	exit_child(ms, cmd, fd, ms -> error);
 }

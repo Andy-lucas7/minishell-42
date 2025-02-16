@@ -40,28 +40,35 @@ static int	find_zero(char *args)
 	return (0);
 }
 
+static void	exit_aux(t_mini *sh, char **args)
+{
+	args = free_mat(args);
+	exit_handler(sh, NULL, 0);
+}
+
 void	bi_exit(t_mini *sh, char **args)
 {
 	int	num;
 
-	if (!args[1])
-	{
-		args = free_mat(args);
-		exit_handler(sh, NULL, 0);
-	}
-	if (!find_zero(args[1]))
-	{
-		args = free_mat(args);
-		exit_handler(sh, NULL, 0);
-	}
 	if (args[2])
-		exit_handler(sh, "-SHELL-E: exit: excessive number of arguments\n", 1);
-	if (!args[2] && valid_num(args[1]))
+	{
+		ft_putstr_fd("-SHELL-E: exit: excessive number of arguments\n", 2);
+		sh->error = 1;
+		return ;
+	}
+	else if (!args[1])
+		exit_aux(sh, args);
+	if (!find_zero(args[1]))
+		exit_aux(sh, args);
+	else if (!args[2] && valid_num(args[1]))
 	{
 		num = ft_atoi(args[1]);
 		args = free_mat(args);
 		exit_handler(sh, "exited with error number", num);
 	}
-	args = free_mat(args);
-	exit_handler(sh, "-SHELL-E: exit: invalid usage\n", 2);
+	else
+	{
+		args = free_mat(args);
+		exit_handler(sh, "-SHELL-E: exit: invalid usage\n", 2);
+	}
 }

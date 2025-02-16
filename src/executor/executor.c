@@ -59,25 +59,16 @@ int	is_directory(t_mini *ms, char *cmd)
 
 static int	exec_on_parent(t_mini *ms, int n_pros, char **cmd, int **fd)
 {
-	if (is_env_directory(ms, cmd[0], ms->envp) == 1)
+	if (!ft_strncmp(cmd[0], "./", 2) && is_directory(ms, cmd[0]) == 1)
+		return (0);
+	if (n_pros > 1)
+		return (-1);
+	if (builtins(ms, &ms->envp, cmd))
 	{
-		ft_putstr_fd(PROMPT_MSG, 2);
-		ft_putstr_fd(get_envp(ms, cmd[0], ms->envp), 2);
-		ft_putstr_fd(": this a directory\n", 2);
-		ms->error = 126;
+		fd = (int **)free_mat((char **) fd);
 		return (0);
 	}
-	if (!ft_strncmp(*cmd, "echo", 4))
-		return (-1);
-	if (!ft_strncmp(*cmd, "pwd", 3))
-		return (-1);
-	if (!ft_strncmp(*cmd, "env", 3))
-		return (-1);
-	if (!ft_strncmp(*cmd, "exit", 4))
-		fd = (int **)free_mat((char **) fd);
-	if (!builtins(ms, &ms->envp, cmd))
-		return (-1);
-	return (n_pros);
+	return (-1);
 }
 
 static void	exec_on_child(t_mini *ms, t_executor *ex, int i)
