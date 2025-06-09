@@ -1,4 +1,4 @@
-# minishell
+# 🖥️ minishell
 
 Implementação de um shell minimalista em C, desenvolvido como parte do currículo da 42.
 
