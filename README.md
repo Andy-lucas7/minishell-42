@@ -1,4 +1,3 @@
-````markdown
 # minishell
 
 Implementação de um shell minimalista em C, desenvolvido como parte do currículo da 42.
@@ -27,14 +26,14 @@ Este projeto simula o comportamento básico de um terminal Unix, com suporte a e
 ---
 
 ## 🛠️ Como compilar e executar
-````
+
 ```bash
 git clone https://github.com/seu-usuario/minishell.git
 cd minishell
 make
 ./minishell
 ```
-````
+
 > É necessário ter a biblioteca `readline` instalada.
 
 ---
@@ -69,5 +68,3 @@ https://www.linkedin.com/in/lucas-andrey7/
 ## 📄 Licença
 
 Este projeto é de uso educacional. Sinta-se livre para estudar e modificar conforme necessário.
-
-````
