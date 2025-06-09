@@ -27,14 +27,14 @@ Este projeto simula o comportamento básico de um terminal Unix, com suporte a e
 ---
 
 ## 🛠️ Como compilar e executar
-
+````
 ```bash
 git clone https://github.com/seu-usuario/minishell.git
 cd minishell
 make
 ./minishell
 ```
-
+````
 > É necessário ter a biblioteca `readline` instalada.
 
 ---
